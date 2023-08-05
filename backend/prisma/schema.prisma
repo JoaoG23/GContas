@@ -11,7 +11,7 @@ datasource db {
 }
 
 model usuarios {
-  id       String @id @default(uuid())
-  username String @unique
-  senha    String
+  id    Int    @id @default(autoincrement())
+  email String
+  senha String
 }
