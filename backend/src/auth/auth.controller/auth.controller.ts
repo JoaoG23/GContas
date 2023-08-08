@@ -1,8 +1,8 @@
-import { Body, Controller, Get, Post, Request } from '@nestjs/common';
+import { Body, Controller, Post } from '@nestjs/common';
 import { AuthService } from '../auth.service';
-import { CriarUsuariosBodyDto } from 'src/usuarios/usuarios.dto/CriarUsuarioBodyDto';
 
 import { Public } from '../constants/SetMetadata';
+import { AutenticacaoUsuario } from '../auth.dto/AutenticacaoUsuario';
 
 @Controller('auth')
 export class AuthController {
@@ -10,9 +10,8 @@ export class AuthController {
 
   @Public()
   @Post('login')
-  async logar(@Body() usuario: CriarUsuariosBodyDto) {
-    const { email, senha } = usuario;
-    return await this.authService.validarLogin(email, senha);
+  async logar(@Body() autenticacaoUsuario: AutenticacaoUsuario) {
+    const { login, senha } = autenticacaoUsuario;
+    return await this.authService.validarLogin(login, senha);
   }
-
 }

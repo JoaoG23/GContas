@@ -11,7 +11,22 @@ datasource db {
 }
 
 model usuarios {
-  id    Int    @id @default(autoincrement())
-  email String
-  senha String
+  id        Int       @id @default(autoincrement())
+  nome      String?   @db.VarChar(100)
+  login     String    @unique @db.Text
+  senha     String    @unique @db.Text
+  createdAt DateTime? @default(now())
+  updatedAt DateTime? @updatedAt
+}
+
+model contas {
+  id          Int       @id @default(autoincrement())
+  titulo      String    @db.VarChar(100)
+  instituacao String    @db.VarChar(100)
+  login       String    @db.VarChar(255)
+  senha       String    @db.Text
+  email       String?   @db.VarChar(255)
+  observacoes String?   @db.VarChar(100)
+  createdAt   DateTime? @default(now())
+  updatedAt   DateTime? @updatedAt
 }
