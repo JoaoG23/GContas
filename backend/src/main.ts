@@ -8,6 +8,8 @@ async function bootstrap() {
   await app.useGlobalPipes(new ValidationPipe()); // Classvalidator
   await app.setGlobalPrefix('api');
 
+  await app.enableCors();
+
   await app.listen(process.env.PORTA_SERVIDOR);
 }
 bootstrap();
