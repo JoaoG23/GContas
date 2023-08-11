@@ -7,7 +7,7 @@ import {
 } from "react-hook-form";
 
 import ButtonDefault from "../../../../Components/Buttons/ButtonDefault/ButtonDark";
-import RedFont from "../../../../Components/FontColor/RedFont";
+import { RedFont } from "../../../../Components/FontColor/RedFont";
 import { InputDefault } from "../../../../Components/Inputs/InputDefault";
 import { CamposStyle } from "./styles";
 import { CelularInput } from "../../../../Components/Inputs/CelularInput";

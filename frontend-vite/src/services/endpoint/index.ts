@@ -8,6 +8,6 @@ export const endpoint = axios.create({
     baseURL: rotaPrincipal,
     headers: {
       "Content-type": "application/json",
-      'auth':`${tokenSessao}`
+      'Authorization':`Bearer ${tokenSessao}`
     },
 });

@@ -32,7 +32,6 @@ const Sidebar: React.FC = () => {
           <p>Olá {nomeUsuario}!</p>
         </Link>
       </SideBar.Item>
-
       <SideBar.Item onClick={limparSessaoUsuario}>
         <IoLogOut color="#fff" />
         <Link to={"/"}>

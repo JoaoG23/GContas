@@ -1,10 +1,7 @@
-
-import { Red }  from './styles';
+import * as Red from "./styles";
 type Props = {
-    children?:any;
-}
-const RedFont:React.FC<Props> = ({children}) => {
-    return(<Red>{children}</Red>)
-}
-
-export default RedFont;
+  children?: any;
+};
+export const RedFont: React.FC<Props> = ({ children }) => {
+  return <Red.Red>{children}</Red.Red>;
+};

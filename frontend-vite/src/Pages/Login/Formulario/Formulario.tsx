@@ -32,7 +32,7 @@ export const Formulario: React.FC = () => {
         const usuario = dados?.data;
         toast.success("Login Realizado com sucesso");
         pegarUsuarioSessao(usuario);
-        navegarAtePaginaDepoisTempo(navigate, "/dashboard");
+        navegarAtePaginaDepoisTempo(navigate, "/contas");
         navegarAtePaginaDepoisTempo(navigate, 0);
       },
     }

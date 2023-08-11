@@ -1,5 +1,5 @@
 import React from "react";
-import RedFont from "../../FontColor/RedFont";
+import { RedFont } from "../../FontColor/RedFont";
 import { BsFillEmojiExpressionlessFill } from "react-icons/bs";
 
 type Props = {

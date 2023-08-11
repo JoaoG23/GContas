@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 export const DefaultStyle = styled.button`
   border: none;
+  font-weight: 500;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -14,14 +15,14 @@ export const DefaultStyle = styled.button`
     #feaa7a 80%,
     #fbae82 100%
   ); */
-  background-color: #A05DFC;
+  background-color: #a05dfc;
   border-radius: 1em;
 
   color: #fff;
   padding: 0.5em;
   background-size: 200% 200%;
 
-  box-shadow: 0 0 2px #fbae82;
+  box-shadow: 1px 1px 2px rgb(107, 107, 107, 0.3);
 
   :hover {
     animation: changeColor 0.5s ease alternate both;

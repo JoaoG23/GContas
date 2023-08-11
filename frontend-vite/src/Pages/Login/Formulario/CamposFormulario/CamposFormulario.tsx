@@ -3,9 +3,8 @@ import { useForm } from "react-hook-form";
 import { FiLogIn } from "react-icons/fi";
 
 import ButtonDefault from "../../../../Components/Buttons/ButtonDefault/ButtonDark";
-import RedFont from "../../../../Components/FontColor/RedFont";
+import { RedFont } from "../../../../Components/FontColor/RedFont";
 import { InputDefault } from "../../../../Components/Inputs/InputDefault";
-
 
 import { CamposStyle } from "./styles";
 
@@ -39,7 +38,7 @@ export const CamposFormulario: React.FC<Props> = ({ funcaoSubmit }) => {
 
       <ButtonDefault>
         <p>Logar</p>
-        <FiLogIn/>
+        <FiLogIn />
       </ButtonDefault>
     </CamposStyle>
   );
