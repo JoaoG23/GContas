@@ -10,13 +10,11 @@ import {
 import { UsuariosService } from '../usuarios.service/usuarios.service';
 
 import { CriarUsuariosBodyDto } from '../usuarios.dto/CriarUsuarioBodyDto';
-import { Public } from 'src/auth/constants/SetMetadata';
 
 @Controller('usuarios')
 export class UsuariosController {
   constructor(private readonly usuariosService: UsuariosService) {}
 
-  @Public()
   @Post()
   async criarUm(@Body() usuario: CriarUsuariosBodyDto) {
     return await this.usuariosService.criarUm(usuario);

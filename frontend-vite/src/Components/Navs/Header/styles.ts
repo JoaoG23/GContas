@@ -1,18 +1,16 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-  width: 80vw;
-  height: 4vh;
+  width: 84vw;
+  height: 9vh;
 
-  border-radius: 2em;
   display: flex;
   align-items: center;
 
   font-weight: 300;
   position: absolute;
-  gap: 1em;
-  top: 1em;
-  right: 1em;
+  top: 0em;
+  right: 0em;
 
   padding: 1em;
 
@@ -20,17 +18,19 @@ export const Container = styled.div`
 
   background-color: #fcfcff;
   box-shadow: 2px 2px 4px #00000027;
-  color: #3744AB;
+  color: grey;
   a {
-    color: #3744AB;
+    color: grey;
   }
   @media only screen and (max-width: 768px) {
     height: 40px;
+    height: 10vh;
   }
 `;
 
 export const TextLimited = styled.p`
-  width: 160px;
+  width: 90px;
+  
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
@@ -40,24 +40,28 @@ export const TextLimited = styled.p`
   }
 `;
 
-export const ImageContainer = styled.div`
+export const Item = styled.button`
   border-radius: 2em;
   display: flex;
+  gap: 5px;
+  border: none;
+  background-color: transparent;
 
-  gap: 0.3em;
+
+  color: #6879F7;
 
   align-items: center;
   :hover {
-    border-radius: 1em;
     animation: toRightButtons 0.2s forwards ease-in;
   }
+
   @keyframes toRightButtons {
     0% {
       transform: translateX(0vw);
     }
     100% {
-      background-color: #0000003f;
-      transform: translateX(1vw);
+      /* background-color: #0000003f; */
+      transform: translateX(0.1vw);
     }
   }
 `;

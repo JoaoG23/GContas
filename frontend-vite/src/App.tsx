@@ -1,10 +1,10 @@
+import { ToastContainer } from "react-toastify";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { BrowserRouter as Router } from "react-router-dom";
 import { useState } from "react";
 import { BsList } from "react-icons/bs";
 
 import AutenticadasRouters from "./Routers/AutenticadasRotas";
-import { ToastContainer } from "react-toastify";
 
 import "react-toastify/dist/ReactToastify.css";
 
@@ -16,8 +16,8 @@ import GlobalStyle from "./themes/global";
 
 import { Body, IconFundo1Flutuante, BotaoPorCima } from "./styles";
 
-import Sidebar from "./Components/Navs/Sidebar";
-import Header from "./Components/Navs/Header";
+import { Sidebar } from "./Components/Navs/Sidebar";
+import { Header } from "./Components/Navs/Header";
 
 import { MobileSidebar } from "./Components/Navs/MobileSidebar";
 import ButtonDefault from "./Components/Buttons/ButtonDefault/ButtonDark";

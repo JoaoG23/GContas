@@ -1,13 +1,13 @@
 import React from "react";
 import { useNavigate, Link } from "react-router-dom";
 
-import { FaUser } from 'react-icons/fa'
+import { FaUser } from "react-icons/fa";
 import { BsFillArrowRightCircleFill } from "react-icons/bs";
 
-import { Container, ImageContainer, VoltarText, TextLimited } from "./styles";
+import { Container, Item, VoltarText, TextLimited } from "./styles";
 import { buscaDadoUsuarioNaSessao } from "../../../utils/buscaDadoUsuarioNaSessao";
 
-const Header: React.FC = () => {
+export const Header: React.FC = () => {
   const { nomeUsuario } = buscaDadoUsuarioNaSessao();
 
   const navigate = useNavigate();
@@ -16,23 +16,19 @@ const Header: React.FC = () => {
   }
   return (
     <Container>
-      <Link to={"/usuario_logado"}>
-        <ImageContainer>
-        <FaUser/>
-          <TextLimited>{nomeUsuario}</TextLimited>
-        </ImageContainer>
-      </Link>
+      <Item>
+        <FaUser size={30} />
+        <TextLimited>{nomeUsuario}</TextLimited>
+      </Item>
       <strong>Gcontas</strong>
-      <ImageContainer
-        role={"button"}
+      <Item
         onClick={() => {
           voltarPaginaAnterior();
         }}
       >
         <VoltarText>Voltar</VoltarText>
-        <BsFillArrowRightCircleFill/>
-      </ImageContainer>
+        <BsFillArrowRightCircleFill size={30} />
+      </Item>
     </Container>
   );
 };
-export default Header;

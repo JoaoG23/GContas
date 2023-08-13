@@ -66,8 +66,8 @@ export const Formulario: React.FC = () => {
   return (
     <>
       <CamposFormulario
-        onSubmit={handleSubmit((conta: ContaCriada) => {
-          mutate(conta);
+        onSubmit={handleSubmit((conta) => {
+          mutate(conta as ContaCriada);
         })}
         register={register}
         control={control}

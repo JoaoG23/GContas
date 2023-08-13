@@ -55,8 +55,8 @@ export class ContasRepositories implements ContasRepositoriesInterface {
     const itemsPorPagina = Number(quantidadeItemsPagina);
 
     const totalQuantidadePaginas = await calcularQuantidadePaginas(
-      quantidadeTotalRegistros,
       itemsPorPagina,
+      quantidadeTotalRegistros,
     );
 
     const pularPagina = (numeroPagina - 1) * itemsPorPagina;

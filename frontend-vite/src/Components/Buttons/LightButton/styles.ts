@@ -6,8 +6,8 @@ export const Light = styled.button`
   gap: 3px;
   border: 0.6px solid #fbfbfb;
   background-color: #fff;
-  border-radius: 0.7em;
   color: #717f95;
+  border-radius: 5px;
   padding: 0.5em;
 
   box-shadow: 0 0 2px gray;
@@ -16,7 +16,6 @@ export const Light = styled.button`
     animation: changeColor 0.5s ease alternate both;
   }
 
-  
   @keyframes changeColor {
     from {
       transform: translateY(0vh);
@@ -26,5 +25,10 @@ export const Light = styled.button`
       transform: translateY(-4px);
     }
   }
-`;
 
+  @media screen and (max-width: 600px) {
+    display: flex;
+    width: 95%;
+    padding: 1em;
+  }
+`;

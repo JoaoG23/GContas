@@ -8,9 +8,10 @@ import {
   BsFillBasket2Fill,
   BsBoxArrowInLeft,
   BsBank2,
+  BsFillPersonVcardFill,
 } from "react-icons/bs";
 import { FaUserAlt } from "react-icons/fa";
-import { IoLogOut } from "react-icons/io5";
+import { IoLogOut, IoPeopleSharp } from "react-icons/io5";
 
 import { tiposFluxosCaixa, categorias } from "./data/listLinks";
 
@@ -35,26 +36,25 @@ export const MobileSidebar: React.FC<Props> = ({
     <>
       {mostrarSidebar && (
         <SideBar.Container>
-          <SideBar.Item>
-            <FaUserAlt color="#fff" size={20} />
-            <Link to={"/usuario_logado"}>
-              <p>Olá {nomeUsuario}!</p>
+          <SideBar.Item onClick={esconderSidebar}>
+            <BsFillPersonVcardFill color="#fff" size={40} />
+            <Link to={"/contas"}>
+              <p>Contas</p>
             </Link>
           </SideBar.Item>
           <SideBar.Item onClick={esconderSidebar}>
-            <BsFillPieChartFill color="#fff" />
-            <Link to={"/dashboard"}>
-              <p>Dashboard</p>
+            <IoPeopleSharp color="#fff" size={40} />
+            <Link to={"/usuarios"}>
+              <p>Usuários</p>
             </Link>
           </SideBar.Item>
-
           <SideBar.Item
             onClick={() => {
-              limparSessaoUsuario();
               esconderSidebar();
+              limparSessaoUsuario();
             }}
           >
-            <IoLogOut color="#fff" />
+            <IoLogOut color="#fff" size={40} />
             <Link to={"/"}>
               <p>Sair</p>
             </Link>

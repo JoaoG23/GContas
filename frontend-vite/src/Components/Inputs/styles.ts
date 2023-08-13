@@ -6,7 +6,7 @@ export const NoBorders = styled.input`
   border: none;
   box-shadow: 1px 1px 5px #717f953a;
 
-  border-radius: 0.8em;
+  border-radius: 5px;
 
   :focus {
     animation-name: toRight;
@@ -25,6 +25,10 @@ export const NoBorders = styled.input`
     100% {
       transform: translateX(0.3vw);
     }
+  }
+
+  @media screen and (max-width: 600px) {
+    padding: 1em;
   }
 `;
 export const ContainerInput = styled.div`

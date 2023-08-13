@@ -24,6 +24,10 @@ export const Button = styled.button`
       transform: translateY(-4px);
     }
   }
+
+  @media screen and (max-width: 600px) {
+    padding: 1em;
+  }
 `;
 
 export const Container = styled.div`
@@ -37,9 +41,7 @@ export const Container = styled.div`
   color: #717f95;
 `;
 
-
 export const NumeroPaginas = styled.div`
   display: flex;
   gap: 0.1em;
-
 `;

@@ -10,14 +10,14 @@ import { pesquisarContasPaginaPorCriterio } from "./api";
 
 import { SpinnerCarregamento } from "../../../Components/spinners/SpinnerCarregamento";
 import { PaginacaoComum } from "../../../Components/paginacoes/Paginacao";
-import { ListaContas } from "../ComponentesParaTodos/tabela/Linha";
+import { ListaContas } from "../ComponentesParaTodos/tabela/Linha/Linha";
 import ButtonDefault from "../../../Components/Buttons/ButtonDefault/ButtonDark";
 import { FormularioPesquisa } from "../ComponentesParaTodos/campos/FormularioPesquisa";
+import { CardList } from "../../../Components/cards/CardList";
 
 import { ContaCriterioPesquisa } from "../../../types/conta/ContaCriterioPesquisa";
 import { ContaVisualizada } from "../../../types/conta/ContaVisualizada";
 import { ErrorResposta } from "../../../types/Respostas/ErrorResposta/ErroResposta";
-import { CardList } from "../../../Components/cards/CardList";
 
 export const TodosContas: React.FC = () => {
   const navigate = useNavigate();
@@ -58,6 +58,7 @@ export const TodosContas: React.FC = () => {
 
   return (
     <Fluxo.Container>
+      {isLoading && <SpinnerCarregamento />}
       <Fluxo.Formulario>
         <FormularioPesquisa
           onSubmit={handleSubmit((criterios: ContaCriterioPesquisa) => {
@@ -70,13 +71,12 @@ export const TodosContas: React.FC = () => {
           errors={errors}
         />
       </Fluxo.Formulario>
-      {isLoading && <SpinnerCarregamento />}
       <Fluxo.Header>
         <h2>Suas senhas</h2>
         <Fluxo.ContainerButtons>
           <ButtonDefault onClick={() => navigate("adicionar")}>
-            <>Adicionar</>
-            <IoMdAddCircle />
+            <p>Adicionar</p>
+            <IoMdAddCircle size={20} />
           </ButtonDefault>
         </Fluxo.ContainerButtons>
       </Fluxo.Header>

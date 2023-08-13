@@ -8,37 +8,35 @@ export const DefaultStyle = styled.button`
   justify-content: center;
   gap: 3px;
 
-  /* background-image: linear-gradient(
-    to right,
-    #1ed49d 0%,
-    #1bc390 50%,
-    #17a97d 80%,
-    #128864 100%
-  ); */
-  background-color: #6879F7;
-  border-radius: 20px;
+  background-color: #6879f7;
+  border-radius: 10px;
   color: #fff;
 
   font-weight: 500;
   padding: 0.5em;
   background-size: 200% 200%;
 
-  box-shadow: 0 0 3px  #717f953a;
+  box-shadow: 0 0 3px #717f953a;
 
-  :hover{
-
-      animation: changeColor 0.5s ease alternate both;
+  :hover {
+    animation: mudarCorEReduzTamanho 0.5s ease alternate both;
   }
 
-  @keyframes changeColor {
+  @keyframes mudarCorEReduzTamanho {
     from {
-    transform: translateY(0vh);
-      background-position: 200 0;
+      transform: scale(1);
+      box-shadow: 1px 1px 10px rgb(160, 93, 252,0.4);
     }
 
     to {
-    transform: translateY(-4px);
-      background-position: 200% 100%;
+      transform: scale(0.9);
+      box-shadow: 0px 0px 13px rgb(160, 93, 252,0.7);
     }
+  }
+
+  @media screen and (max-width: 600px) {
+    display: flex;
+    width: 95%;
+    padding: 1em;
   }
 `;

@@ -1,10 +1,10 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-  width: 13vw;
+  width: 16vw;
   height: 100vh;
 
-  position: absolute;
+  position: fixed;
   left: 0px;
   padding-top: 7em;
   padding-left: 1em;
@@ -12,6 +12,7 @@ export const Container = styled.div`
 
   display: flex;
   flex-direction: column;
+
   gap: 1em;
 
   background-color: #6879F7;
@@ -25,6 +26,7 @@ export const Container = styled.div`
 `;
 
 export const Image = styled.img`
+
   @media only screen and (max-width: 768px) {
     width: 40px;
   }

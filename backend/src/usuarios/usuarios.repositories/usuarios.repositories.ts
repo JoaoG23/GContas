@@ -25,8 +25,8 @@ export class UsuariosRepositories implements UsuariosRepositoriesInterface {
     const itemsPorPagina = Number(quantidadeItemsPagina);
 
     const totalQuantidadePaginas = await calcularQuantidadePaginas(
-      quantidadeTotalRegistros,
       itemsPorPagina,
+      quantidadeTotalRegistros,
     );
 
     const pularPagina = (numeroPagina - 1) * itemsPorPagina;

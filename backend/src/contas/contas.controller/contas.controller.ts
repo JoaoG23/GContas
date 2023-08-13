@@ -23,6 +23,11 @@ export class ContasController {
     return await this.contasService.criarUm(conta);
   }
 
+  @Post('varias')
+  async criarVarias(@Body() contas: CriarContaBodyDto[]) {
+    return await this.contasService.criarVarias(contas);
+  }
+
   @Get()
   async buscarTodosPorPagina(
     @Query('numero_pagina') numero_pagina,

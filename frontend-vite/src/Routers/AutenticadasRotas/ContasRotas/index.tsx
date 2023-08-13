@@ -5,6 +5,7 @@ import PrivateRoute from "../../Auth/PrivateRouter";
 import { AdicionarConta } from "../../../Pages/contas/AdicionarConta";
 import { EditarConta } from "../../../Pages/contas/EditarConta";
 import { TodosContas } from "../../../Pages/contas/TodasContas";
+import { DeletarConta } from "../../../Pages/contas/DeletarConta";
 
 export const ContasRotas: React.FC = () => {
   return (
@@ -18,7 +19,7 @@ export const ContasRotas: React.FC = () => {
         }
       />
       <Route
-        path="/contas/adicionar"
+        path="contas/adicionar"
         element={
           <PrivateRoute redirectTo={"/"}>
             <AdicionarConta />
@@ -26,10 +27,18 @@ export const ContasRotas: React.FC = () => {
         }
       />
       <Route
-        path="/contas/editar/:id"
+        path="contas/editar/:id"
         element={
           <PrivateRoute redirectTo={"/"}>
             <EditarConta />
+          </PrivateRoute>
+        }
+      />
+      <Route
+        path="contas/deletar/:id"
+        element={
+          <PrivateRoute redirectTo={"/"}>
+            <DeletarConta />
           </PrivateRoute>
         }
       />

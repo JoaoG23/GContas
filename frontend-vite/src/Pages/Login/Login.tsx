@@ -6,6 +6,7 @@ const Login: React.FC = () => {
   return (
     <ContainerMain>
       <LoginContainer>
+        <h2>GContas</h2>
         <h3>Login</h3>
         <h5>Acesse o seu cadastro aqui</h5>
         <Formulario />

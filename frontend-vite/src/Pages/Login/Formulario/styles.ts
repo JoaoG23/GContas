@@ -5,7 +5,7 @@ export const FormularioStyle = styled.div`
   gap: 0.5em;
 
   flex-direction: column;
-
+  
   form: {
     display: flex;
     gap: 0.5em;

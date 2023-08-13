@@ -8,35 +8,36 @@ export const DefaultStyle = styled.button`
   justify-content: center;
   gap: 5px;
 
-  /* background-image: linear-gradient(
-    to right,
-    #fe9a60 0%,
-    #ffa26b 50%,
-    #feaa7a 80%,
-    #fbae82 100%
-  ); */
   background-color: #a05dfc;
-  border-radius: 1em;
+  border-radius: 10px;
 
   color: #fff;
   padding: 0.5em;
   background-size: 200% 200%;
 
-  box-shadow: 1px 1px 2px rgb(107, 107, 107, 0.3);
+  box-shadow: 1px 1px 2px rgb(160, 93, 252,0.4);
 
   :hover {
-    animation: changeColor 0.5s ease alternate both;
+    animation: mudarCorEReduzTamanho 0.8s ease forwards;
   }
 
-  @keyframes changeColor {
+  @keyframes mudarCorEReduzTamanho {
     from {
-      transform: translateY(0vh);
-      background-position: 200 0;
+      transform: scale(1);
+      box-shadow: 1px 1px 10px rgb(160, 93, 252,0.4);
     }
 
     to {
-      transform: translateY(-5px);
-      background-position: 200% 100%;
+      transform: scale(0.9);
+      box-shadow: 0px 0px 13px rgb(160, 93, 252,0.7);
     }
+  }
+
+  @media screen and (max-width: 600px) {
+
+    display: flex;
+    width: 95%;
+    padding: 1em;
+
   }
 `;

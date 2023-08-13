@@ -1,30 +1,32 @@
 import styled from "styled-components";
 
 export const BotaoPorCima = styled.div`
-
   @media screen and (max-width: 769px) {
     z-index: 2;
     position: fixed;
     top: 2vh;
     left: 2vw;
-   
   }
-`
+`;
 export const Body = styled.div`
-  position: absolute;
+  position: fixed;
 
   height: 80vh;
   justify-content: center;
-  overflow: auto;
 
-  top: 15vh;
+  top: 11vh;
   width: 77vw;
+  /* overflow-y:scroll; */
+
+  
   left: 20vw;
   @media screen and (max-width: 769px) {
     left: 0vw;
     right: 0vw;
     width: 95vw;
     margin: auto;
+
+    overflow-y:auto;
     justify-content: center;
   }
 `;

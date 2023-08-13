@@ -1,12 +1,12 @@
-import { Route, Routes } from "react-router-dom";
-
-import PrivateRoute from "../Auth/PrivateRouter";
+ 
 import { ContasRotas } from "./ContasRotas";
+import { UsuariosRotas } from "./UsuariosRotas";
 
 const AutenticadasRotas = () => {
   return (
     <>
       <ContasRotas />
+      <UsuariosRotas/>
     </>
   );
 };

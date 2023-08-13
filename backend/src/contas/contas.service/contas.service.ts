@@ -35,6 +35,19 @@ export class ContasService {
     );
   }
 
+  async criarVarias(contas: CriarContaBodyDto[]) {
+    for (const conta of contas) {
+      const contaComAlgunsDadosCriptografados = {
+        ...conta,
+        titulo: conta.instituacao,
+        senha: await this.criptografia.criptografar(conta.senha),
+        login: await this.criptografia.criptografar(conta.login),
+        email: await this.criptografia.criptografar(conta.email || ''),
+      };
+      await this.contasRepositories.salvar(contaComAlgunsDadosCriptografados);
+    }
+  }
+
   async deletarUmPorId(id: number) {
     await this.validarNaoExisteId(id);
     return await this.contasRepositories.deletarUmPorId(id);

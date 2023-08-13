@@ -4,7 +4,7 @@ import styled from "styled-components";
 import imageLogin from "../../assets/login-image.png";
 
 export const LoginContainer = styled.main`
-  padding: 2em;
+  padding: 3em;
   margin: 10px;
   width: auto;
   display: grid;
@@ -14,10 +14,18 @@ export const LoginContainer = styled.main`
   align-items: center;
   height: auto;
   background-color: #f8f8f9;
-  border-radius: 1.5em;
+  border-radius: .8em;
 
   animation: entradaSuave 1s ease alternate both;
   box-shadow: 2px 2px 10px #1ed49d33;
+
+  @media only screen and (max-width: 768px) {
+    justify-items:stretch;
+
+    text-align: center;
+    width: 90%;
+    padding: .8em;
+  }
 `;
 export const ImageLateral = styled.img`
 
@@ -33,10 +41,6 @@ export const ContainerMain = styled.main`
   flex-direction: row;
   justify-content: center;
   flex-wrap: wrap;
-  /* background-image: url(${imageLogin}); */
-  /* background-repeat: no-repeat;
-  background-attachment:fixed;
-  background-size: cover; */
 
   background-color:#6979F8;
 
@@ -52,7 +56,7 @@ export const ContainerMain = styled.main`
 
   @media only screen and (max-width: 768px) {
     background-image: none;
-    display: block;
+    display: flex;
     background-color:#6879f7;
   }
 `;

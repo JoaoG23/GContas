@@ -45,10 +45,6 @@ export const Formulario: React.FC = () => {
         }}
       />
       {isLoading && <SpinnerCarregamento />}
-      <SecondaryButton onClick={() => navigate("/registrar")}>
-        <p>Registrar</p>
-        <BsPersonFillAdd />
-      </SecondaryButton>
     </FormularioStyle>
   );
 };

@@ -1,23 +1,13 @@
+import { BsCheckCircleFill } from "react-icons/bs";
 import React from "react";
 import "react-toastify/dist/ReactToastify.css";
 
 import * as Form from "./styles";
 
-import { useElementoStore } from "../../../../../stores/useElementoStore/useElementoStore";
-import { useSubelementoStore } from "../../../../../stores/useSubelementoStore/useSubelementoStore";
-import { useTiposStore } from "../../../../../stores/useTiposStore/useTiposStore";
-
 import { InputDefault } from "../../../../../Components/Inputs/InputDefault";
 import { SecondaryButton } from "../../../../../Components/Buttons/SecondaryButton/ButtonDark";
-import { SublementoSelect } from "../../../../../Components/selects/SubelementoSelect";
-import { ElementoSelect } from "../../../../../Components/selects/ElementoSelect";
 
 import { AlertCampoVazio } from "../../../../../Components/alerts/AlertCampoVazio";
-import { TiposSelect } from "../../../../../Components/selects/TiposSelect";
-import { SubtiposSelect } from "../../../../../Components/selects/SubtiposSelect";
-import { LocaisSelect } from "../../../../../Components/selects/LocaisSelect";
-import { TipoDespesaSelect } from "../../../../../Components/selects/TipoDespesaSelect";
-import { DecimalInput } from "../../../../../Components/Inputs/DecimalInput";
 
 type Props = {
   onSubmit?: React.FormEventHandler | any;
@@ -90,23 +80,25 @@ export const CamposFormulario: React.FC<Props> = ({
                 placeholder="Opcional! caso precise de recupera dados..."
               />
             </div>
+            <div>
+              <InputDefault
+                requirido={false}
+                type="text"
+                name="observacoes"
+                register={register}
+                label="Observacões"
+                placeholder="Opcional! Notas ..."
+
+              />
+            </div>
           </main>
         </Form.UmaColuna>
-
-        <Form.ObservacoesLinha>
-          <div>
-            <InputDefault
-              requirido={false}
-              type="text"
-              name="observacoes"
-              register={register}
-              label="Opcional a observação..."
-            />
-          </div>
-        </Form.ObservacoesLinha>
       </Form.Campos>
       <footer>
-        <SecondaryButton>Salvar +</SecondaryButton>
+        <SecondaryButton>
+          <p>Salvar</p>
+          <BsCheckCircleFill size={20} />
+        </SecondaryButton>
       </footer>
     </Form.Container>
   );
