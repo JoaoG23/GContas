@@ -97,7 +97,9 @@ O Gconta foi criado por João Guilherme, um desenvolvedor de software apaixonado
 ![avatar](https://images.weserv.nl/?url=https://avatars.githubusercontent.com/u/80895578?v=4?v=4&h=100&w=100&fit=cover&mask=circle&maxage=7d
 )
 
+
  <sub><b>Joao Guilherme</b></sub></h4> <a href="https://github.com/JoaoG23/">🚀</a>
+
 
 Done with 🤭 by Joao Guilherme 👋🏽 Entre em contato logo abaixo!
 
