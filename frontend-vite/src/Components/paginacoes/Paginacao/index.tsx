@@ -40,7 +40,7 @@ export const PaginacaoComum: React.FC<Props> = ({
       </Paginacao.Button>
       <div>
         Páginas : {pagina} até {totalPaginas} Qtd de items:{" "}
-        {quantidadeTotalItems}
+        <strong>{quantidadeTotalItems}</strong>
       </div>
       {/* <Paginacao.NumeroPaginas>
         {criarTodosBotaoPaginar(totalPaginas)}
