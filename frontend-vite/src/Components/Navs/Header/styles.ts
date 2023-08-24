@@ -30,7 +30,7 @@ export const Container = styled.div`
 
 export const TextLimited = styled.p`
   width: 90px;
-  
+
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
@@ -41,14 +41,14 @@ export const TextLimited = styled.p`
 `;
 
 export const Item = styled.button`
-  border-radius: 2em;
+  border-radius: .9em;
   display: flex;
   gap: 5px;
   border: none;
   background-color: transparent;
 
-
-  color: #6879F7;
+  padding: 7px;
+  color: #6879f7;
 
   align-items: center;
   :hover {
@@ -57,11 +57,12 @@ export const Item = styled.button`
 
   @keyframes toRightButtons {
     0% {
-      transform: translateX(0vw);
+      transform: translateY(0vw);
     }
     100% {
-      /* background-color: #0000003f; */
-      transform: translateX(0.1vw);
+      color: #fff;
+      background-color: #6879f7;
+      transform: translateY(0.1vw);
     }
   }
 `;

@@ -1,3 +1,9 @@
+import {
+  BsFillEyeFill,
+  BsFillEyeSlashFill,
+  BsFillPencilFill,
+  BsFillTrashFill,
+} from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
 
 import { ContaVisualizada } from "../../../../../types/conta/ContaVisualizada";
@@ -9,13 +15,21 @@ import { GreenFont } from "../../../../../Components/FontColor/GreenFont";
 import { RedFont } from "../../../../../Components/FontColor/RedFont";
 import ButtonDefault from "../../../../../Components/Buttons/ButtonDefault/ButtonDark";
 import { SecondaryButton } from "../../../../../Components/Buttons/SecondaryButton/ButtonDark";
-import { BsFillPencilFill, BsFillTrashFill } from "react-icons/bs";
+import { LightButton } from "../../../../../Components/Buttons/LightButton";
+
+import { useMascaraTexto } from "../../hooks/useMascaraTexto/useMascaraTexto";
 
 type Props = {
   conta: ContaVisualizada;
 };
 
 export const ListaContas: React.FC<Props> = ({ conta }) => {
+  const {
+    textoMascarada: senhaMascarada,
+    mostrarTexto: mostrarSenha,
+    setMostrarTexto: setMostrarSenha,
+  } = useMascaraTexto(conta.senha);
+
   const navigate = useNavigate();
   return (
     <Card>
@@ -32,8 +46,17 @@ export const ListaContas: React.FC<Props> = ({ conta }) => {
             <GreenFont>{conta.login!}</GreenFont>
           </li>
           <li>
-            <strong>Senha: </strong>
-            <RedFont>{conta.senha!}</RedFont>
+            <Contas.SenhaContainer>
+              <strong>Senha: </strong>
+              <RedFont>{senhaMascarada}</RedFont>
+              <div role="button" onClick={() => setMostrarSenha(!mostrarSenha)}>
+                {mostrarSenha ? (
+                  <BsFillEyeFill size={14} />
+                ) : (
+                  <BsFillEyeSlashFill size={14} />
+                )}
+              </div>
+            </Contas.SenhaContainer>
           </li>
           <li>
             <strong>E-mail: </strong> {conta.email!}

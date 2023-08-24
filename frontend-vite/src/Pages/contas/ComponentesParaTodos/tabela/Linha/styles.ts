@@ -4,6 +4,15 @@ export const Container = styled.main`
   display: flex;
   justify-content: space-between;
 `;
+export const SenhaContainer = styled.div`
+  gap: 0.3em;
+  display: flex;
+  div {
+    display: flex;
+    gap: 0.3em;
+    align-items: center;
+  }
+`;
 export const ListaItems = styled.ul`
   list-style-type: none;
 
