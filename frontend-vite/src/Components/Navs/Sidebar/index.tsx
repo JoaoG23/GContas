@@ -1,3 +1,4 @@
+import { FaFilePdf } from "react-icons/fa";
 import React from "react";
 import { Link } from "react-router-dom";
 import { BsFillPersonVcardFill } from "react-icons/bs";
@@ -14,6 +15,12 @@ export const Sidebar: React.FC = () => {
         <BsFillPersonVcardFill color="#fff" size={40} />
         <Link to={"/contas"}>
           <p>Contas</p>
+        </Link>
+      </SideBar.Item>
+      <SideBar.Item>
+        <FaFilePdf color="#fff" size={40} />
+        <Link to={"/exportacao"}>
+          <p>Exportações</p>
         </Link>
       </SideBar.Item>
       <SideBar.Item>

@@ -128,4 +128,21 @@ export class ContasService {
     );
     return [configuracoesPagina, itemsPaginaDescriptografados];
   }
+
+  async pesquisarPorCriterios(criteriosDeBusca: CriteriosDePesquisaContaDto) {
+    const contas = await this.contasRepositories.pesquisarPorCriterios(
+      criteriosDeBusca,
+    );
+
+    const contasDescritografadas = contas?.map((conta: VisualizarConta) => {
+      return {
+        ...conta,
+        senha: this.criptografia.descriptografar(conta.senha),
+        login: this.criptografia.descriptografar(conta.login),
+        email: this.criptografia.descriptografar(conta.email),
+      };
+    });
+
+    return contasDescritografadas;
+  }
 }

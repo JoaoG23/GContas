@@ -43,6 +43,40 @@ export class ContasRepositories implements ContasRepositoriesInterface {
     return contagem;
   }
 
+  async pesquisarPorCriterios(criteriosDeBusca: CriteriosDePesquisaContaDto) {
+    const { instituacao, login, titulo } = criteriosDeBusca;
+
+    return await this.prismaService.contas.findMany({
+      where: {
+        AND: [
+          {
+            instituacao: {
+              contains: instituacao,
+            },
+          },
+          {
+            login: {
+              contains: login,
+            },
+          },
+          {
+            titulo: {
+              contains: titulo,
+            },
+          },
+        ],
+      },
+      select: {
+        titulo: true,
+        instituacao: true,
+        login: true,
+        senha: true,
+        email: true,
+        observacoes: true,
+      },
+    });
+  }
+
   async pesquisarCriteriosPorPagina(
     criteriosDeBusca: CriteriosDePesquisaContaDto,
   ) {

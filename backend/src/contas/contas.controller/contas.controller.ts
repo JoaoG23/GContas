@@ -27,8 +27,7 @@ export class ContasController {
   async criarVarias(@Body() contas: CriarContaBodyDto[]) {
     return await this.contasService.criarVarias(contas);
   }
-
-  @Get()
+  @Get('paginas')
   async buscarTodosPorPagina(
     @Query('numero_pagina') numero_pagina,
     @Query('quantidade_items') quantidade_items,
@@ -38,7 +37,7 @@ export class ContasController {
       quantidade_items,
     );
   }
-  @Get('pesquisar')
+  @Get('pesquisar/paginas')
   async pesquisarCriteriosPorPagina(@Query() criteriosDeBusca) {
     const criteriosBuscarService: CriteriosDePesquisaContaDto = {
       ...criteriosDeBusca,
@@ -47,6 +46,17 @@ export class ContasController {
     };
 
     return await this.contasService.pesquisarCriteriosPorPagina(
+      criteriosBuscarService,
+    );
+  }
+
+  @Get('pesquisar')
+  async pesquisarPorCriterios(@Query() criteriosDeBusca) {
+    const criteriosBuscarService: CriteriosDePesquisaContaDto = {
+      ...criteriosDeBusca,
+    };
+
+    return await this.contasService.pesquisarPorCriterios(
       criteriosBuscarService,
     );
   }

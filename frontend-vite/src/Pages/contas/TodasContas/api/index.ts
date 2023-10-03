@@ -8,7 +8,7 @@ export async function pesquisarContasPaginaPorCriterio(
   criteriosBusca: ContaCriterioPesquisa
 ) {
   const { instituacao, titulo, login } = criteriosBusca;
-  const resposta = await endpoint.get(`/contas/pesquisar`, {
+  const resposta = await endpoint.get(`/contas/pesquisar/paginas`, {
     params: {
       numero_pagina,
       quantidade_items: 3,

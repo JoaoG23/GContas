@@ -12,6 +12,7 @@ export abstract class ContasRepositoriesInterface {
   abstract pesquisarCriteriosPorPagina(
     criteriosDeBusca: CriteriosDePesquisaContaDto,
   );
+  abstract pesquisarPorCriterios(criteriosDeBusca: CriteriosDePesquisaContaDto);
   abstract buscarUmPorId(id: number);
   abstract contarTodos();
   abstract contarTodosPorCriterio(
