@@ -19,7 +19,7 @@ export const Sidebar: React.FC = () => {
       </SideBar.Item>
       <SideBar.Item>
         <FaFilePdf color="#fff" size={40} />
-        <Link to={"/exportacao"}>
+        <Link to={"/exportacoes"}>
           <p>Exportações</p>
         </Link>
       </SideBar.Item>

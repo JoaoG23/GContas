@@ -67,6 +67,7 @@ export class ContasRepositories implements ContasRepositoriesInterface {
         ],
       },
       select: {
+        id: true,
         titulo: true,
         instituacao: true,
         login: true,

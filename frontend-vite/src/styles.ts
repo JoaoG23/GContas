@@ -16,7 +16,7 @@ export const Body = styled.div`
 
   top: 11vh;
   width: 77vw;
-  /* overflow-y:scroll; */
+  overflow-y:scroll;
 
   
   left: 20vw;
