@@ -1,7 +1,7 @@
 import { FaFilePdf } from "react-icons/fa";
 import React from "react";
 import { Link } from "react-router-dom";
-import { BsFillPersonVcardFill } from "react-icons/bs";
+import { BsFillPersonVcardFill , BsFillBuildingsFill} from "react-icons/bs";
 import { IoLogOut, IoPeopleSharp } from "react-icons/io5";
 
 import * as SideBar from "./styles";
@@ -27,6 +27,12 @@ export const Sidebar: React.FC = () => {
         <IoPeopleSharp color="#fff" size={40} />
         <Link to={"/usuarios"}>
           <p>Usuários</p>
+        </Link>
+      </SideBar.Item>
+      <SideBar.Item>
+        <BsFillBuildingsFill color="#fff" size={40} />
+        <Link to={"/instituicoes"}>
+          <p>Instituições</p>
         </Link>
       </SideBar.Item>
       <SideBar.Item onClick={limparSessaoUsuario}>
