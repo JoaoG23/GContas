@@ -6,31 +6,40 @@ import { toast } from "react-toastify";
 
 import "react-toastify/dist/ReactToastify.css";
 
-import { CamposFormulario } from "../../../ComponentesParaTodos/campos/CamposFormularioAdicionarEditar";
-
 import { navegarAtePaginaDepoisTempo } from "../../../../../utils/navegarAtePaginaDepoisTempo/navegarAtePaginaDepoisTempo";
 
-import { ContaCriada } from "../../../../../types/conta/ContaCriada";
 import { ErrorResposta } from "../../../../../types/Respostas/ErrorResposta/ErroResposta";
+import { InstuicaoCriada } from "../../../../../types/instituicao/InstituicaoCriada";
 
 import { ModalSucesso } from "../../../../../Components/Modais/ModalSucesso";
 import { ModalCarregando } from "../../../../../Components/Modais/ModalCarregando";
 
-import { adicionarConta } from "../../api";
+import { adicionarInstituicao } from "../../api";
+
+import { CamposFormulario } from "../../../ComponentesParaTodos/campos/CamposFormularioAdicionarEditar";
+import { CamposFormularioLogomarca } from "../../../ComponentesParaTodos/campos/CamposFormularioLogomarca";
+
+import { Container } from "./styles";
+import { SpinnerCarregamento } from "../../../../../Components/spinners/SpinnerCarregamento";
 
 export const Formulario: React.FC = () => {
   const queryClient = useQueryClient();
   const navigate = useNavigate();
 
-  const { mutate, isLoading, isSuccess } = useMutation(
-    async (conta: ContaCriada) => await adicionarConta(conta),
+  const {
+    mutate: adicionarMutate,
+    isLoading: isLoadingAdicionar,
+    isSuccess,
+  } = useMutation(
+    async (instituicao: InstuicaoCriada) =>
+      await adicionarInstituicao(instituicao),
     {
       onError: (error: ErrorResposta) => {
         toast.error(`Ops! Houve um error: ${error.response?.data?.message}`);
       },
       onSuccess: () => {
-        queryClient.invalidateQueries("listar-um-conta");
-        queryClient.invalidateQueries("listar-conta-por-pagina");
+        queryClient.invalidateQueries("listar-um-instituicoes");
+        queryClient.invalidateQueries("listar-instituicoes-por-pagina");
         navegarAtePaginaDepoisTempo(navigate, -1);
       },
     }
@@ -40,21 +49,24 @@ export const Formulario: React.FC = () => {
     register,
     handleSubmit,
     control,
+    setValue,
     formState: { errors },
-  } = useForm();
+  } = useForm({});
 
   return (
-    <>
+    <Container>
       <CamposFormulario
-        onSubmit={handleSubmit((conta) => {
-          mutate(conta as ContaCriada);
+        onSubmit={handleSubmit((instituicao) => {
+          adicionarMutate(instituicao as InstuicaoCriada);
         })}
         register={register}
         control={control}
         errors={errors}
       />
+      {isLoadingAdicionar && <SpinnerCarregamento />}
+
       {isSuccess && <ModalSucesso />}
-      {isLoading && <ModalCarregando />}
-    </>
+      {isLoadingAdicionar && <ModalCarregando />}
+    </Container>
   );
 };

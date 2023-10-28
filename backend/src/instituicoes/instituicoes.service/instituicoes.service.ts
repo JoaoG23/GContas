@@ -1,36 +1,37 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 
 import { InstituicaoCriadaDto } from '../instituicoes.dto/InstituicaoCriada';
 import { InstituicaoEditadaDto } from '../instituicoes.dto/InstituicaoEditada';
+import { CriterioDePesquisaInstituicaoDto } from '../instituicoes.dto/InstituicaoPesquisa';
 
 import { InstituicoesRepositoriesInterface } from '../instituicoes.repository/instituicoes.repository.Interface';
-import { CriterioDePesquisaInstituicaoDto } from '../instituicoes.dto/InstituicaoPesquisa';
+
+import { EdicaoInstituicoesServiceInterface } from './edicao.instituicoes.service/edicao.instituicoes.service.interface';
+import { RemocaoInstituicoesServiceInterface } from './remocao.instituicoes.service/remocao.instituicoes.service.interface';
+import { CriacaoInstituicoesServiceInterface } from './criacao.instituicoes.service/criacao.instituicoes.service.interface';
 
 @Injectable()
 export class InstituicoesService {
   constructor(
     private readonly instituicoesRepositories: InstituicoesRepositoriesInterface,
+    private readonly edicaoSerivce: EdicaoInstituicoesServiceInterface,
+    private readonly remocaoService: RemocaoInstituicoesServiceInterface,
+    private readonly criacaoService: CriacaoInstituicoesServiceInterface,
   ) {}
 
-  async validarNaoExisteId(id: number) {
-    const existeLogin = await this.instituicoesRepositories.buscarUmPorId(id);
-    if (!existeLogin) {
-      throw new NotFoundException('Esse id não existe');
-    }
-  }
-
   async criarUm(instituicao: InstituicaoCriadaDto) {
-    return await this.instituicoesRepositories.salvar(instituicao);
+    return await this.criacaoService.criarUm(instituicao);
   }
 
   async deletarUmPorId(id: number) {
-    await this.validarNaoExisteId(id);
-    return await this.instituicoesRepositories.deletarUmPorId(id);
+    return await this.remocaoService.deletarUmPorId(id);
   }
 
-  async editarUmPorId(id: number, instituicao: InstituicaoEditadaDto) {
-    await this.validarNaoExisteId(id);
-    return await this.instituicoesRepositories.editarUmPorId(id, instituicao);
+  async editarInstituicaoELogoPorId(
+    id: number,
+    instituicao: InstituicaoEditadaDto,
+  ) {
+    this.edicaoSerivce.editarInstituicaoELogoPorId(id, instituicao);
   }
 
   async buscarUmPorId(id: number) {
@@ -51,14 +52,6 @@ export class InstituicoesService {
     criteriosDeBusca: CriterioDePesquisaInstituicaoDto,
   ) {
     return await this.instituicoesRepositories.pesquisarCriteriosPorPagina(
-      criteriosDeBusca,
-    );
-  }
-
-  async pesquisarPorCriterios(
-    criteriosDeBusca: CriterioDePesquisaInstituicaoDto,
-  ) {
-    return await this.instituicoesRepositories.pesquisarPorCriterios(
       criteriosDeBusca,
     );
   }

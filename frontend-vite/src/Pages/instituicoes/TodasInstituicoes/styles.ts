@@ -14,7 +14,7 @@ export const Formulario = styled.div`
 export const Header = styled.header`
   display: flex;
   justify-content: space-between;
-  margin: 0.3em;
+  margin-top: 1em;
 
   @media screen and (max-width: 600px) {
     flex-direction: column;

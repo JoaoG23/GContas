@@ -23,4 +23,5 @@ export class CriarContaBodyDto {
 
   email?: string;
   observacoes?: string;
+  instituicoesId?: number;
 }

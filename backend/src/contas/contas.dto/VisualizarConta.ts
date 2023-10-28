@@ -8,4 +8,5 @@ export class VisualizarConta {
   observacoes?: string;
   createdAt: Date;
   updatedAt: Date;
+  instituicoesId?: number;
 }

@@ -1,10 +1,10 @@
 import styled from "styled-components";
 
 export const ContainerPesquisa = styled.section`
-  width: 40%;
+  width: 50%;
 
-  display: flex;
-
+  display: grid;
+  grid-template-columns: 2fr 1fr;
   gap: 10px;
   align-items: end;
   

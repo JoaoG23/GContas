@@ -3,6 +3,13 @@ import styled from "styled-components";
 export const Container = styled.main`
   display: flex;
   justify-content: space-between;
+  height: 36px;
+  gap: 1em;
+`;
+export const ContainerLeft = styled.section`
+  display: flex;
+  gap: 1em;
+  align-items: center;
 `;
 export const SenhaContainer = styled.div`
   gap: 0.3em;
@@ -21,8 +28,9 @@ export const ListaItems = styled.ul`
   }
 `;
 export const ContainerButton = styled.div`
-  display: grid;
-  justify-content: center;
+  display: flex;
+  
+  /* justify-content: center; */
   align-content: center;
   gap: 5px;
 `;

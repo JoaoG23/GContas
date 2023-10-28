@@ -74,7 +74,7 @@ export const TodasInstituicoes: React.FC = () => {
         />
       </Fluxo.Formulario>
       <Fluxo.Header>
-        <h2>Suas senhas</h2>
+        <h2>Suas Instituições Cadastradas</h2>
         <Fluxo.ContainerButtons>
           <ButtonDefault onClick={() => navigate("adicionar")}>
             <p>Adicionar</p>

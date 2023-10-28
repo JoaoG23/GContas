@@ -1,12 +1,13 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 
 import { CriptografiaCryptoInterface } from 'src/utils/criptografias/CriptografiaCrypto/interfaces/CriptografiaCryptoInterface';
-import { ContasRepositoriesInterface } from '../interfaces/ContasRepositoriesInterface';
-import { ContasVisualizadaPaginacao } from '../interfaces/ContasVisualizadaPaginacao';
-import { VisualizarConta } from '../interfaces/VisualizarConta';
+import { ContasVisualizadaPaginacao } from '../contas.dto/ContasVisualizadaPaginacao';
+import { VisualizarConta } from '../contas.dto/VisualizarConta';
 
 import { CriarContaBodyDto } from '../contas.dto/CriarContaBodyDto';
 import { CriteriosDePesquisaContaDto } from '../contas.dto/CriteriosDePesquisaContaDto';
+
+import { ContasRepositoriesInterface } from '../contas.repositories/ContasRepositoriesInterface';
 
 @Injectable()
 export class ContasService {

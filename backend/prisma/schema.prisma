@@ -20,12 +20,12 @@ model usuarios {
 }
 
 model instituicoes {
-  id             Int       @id @default(autoincrement())
-  nome           String?   @db.VarChar(50)
-  caminho_imagem String?   @db.VarChar(255)
-  createdAt      DateTime? @default(now())
-  updatedAt      DateTime? @updatedAt
-  contas         contas[]
+  id        Int       @id @default(autoincrement())
+  nome      String?   @db.VarChar(50)
+  image     String?   @db.VarChar(255)
+  createdAt DateTime? @default(now())
+  updatedAt DateTime? @updatedAt
+  contas    contas[]
 }
 
 model contas {

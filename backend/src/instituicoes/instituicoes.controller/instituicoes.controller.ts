@@ -1,3 +1,4 @@
+import { FileInterceptor } from '@nestjs/platform-express';
 import {
   Body,
   Controller,
@@ -7,11 +8,18 @@ import {
   Put,
   Post,
   Query,
+  UseInterceptors,
+  UploadedFile,
+  Res,
 } from '@nestjs/common';
+
+import { Response } from 'express';
 
 import { InstituicoesService } from '../instituicoes.service/instituicoes.service';
 import { InstituicaoCriadaDto } from '../instituicoes.dto/InstituicaoCriada';
 import { InstituicaoEditadaDto } from '../instituicoes.dto/InstituicaoEditada';
+
+import { multerConfigUploadLogo } from '../instituicoes.utils/multer/multerConfigUploadLogo';
 
 @Controller('instituicoes')
 export class InstituicoesController {
@@ -45,21 +53,61 @@ export class InstituicoesController {
     const idInteiro = Number(id);
     return await this.instituicoesService.buscarUmPorId(idInteiro);
   }
-
-  @Post()
-  async criarUm(@Body() instituicoes: InstituicaoCriadaDto) {
-    return await this.instituicoesService.criarUm(instituicoes);
+  @Get('logo/:logoname')
+  async buscarLogomarcaPorLogoname(
+    @Res() res: Response,
+    @Param('logoname') logoname: string,
+  ) {
+    res.sendFile(logoname, { root: './uploads/logos' });
   }
 
-  @Put(':id')
-  async editarUmPorId(
+  @Post()
+  @UseInterceptors(FileInterceptor('logo', multerConfigUploadLogo()))
+  async criarUm(
+    @Body() instituicoes: InstituicaoCriadaDto,
+    @UploadedFile() file: Express.Multer.File,
+  ) {
+    const { nome } = instituicoes;
+    const instituicaoComImage = {
+      nome,
+      image: file?.filename,
+    };
+
+    return await this.instituicoesService.criarUm(instituicaoComImage);
+  }
+
+  // @Post('upload/logo')
+  // @UseInterceptors(FileInterceptor('logo', multerConfig()))
+  // async uploadLogo(
+  //   @Res() res: Response,
+  //   @UploadedFile() file: Express.Multer.File,
+  // ) {
+  //   if (!file) {
+  //     throw new BadRequestException('Arquivo não é imagem');
+  //   }
+  //   return res.sendFile(file.filename, { root: './uploads/logos' });
+  // }
+
+  @Put('logo/:id')
+  @UseInterceptors(FileInterceptor('logo', multerConfigUploadLogo()))
+  async editarInstituicaoELogoPorPorId(
     @Param('id') id: string,
     @Body() instituicoes: InstituicaoEditadaDto,
+    @UploadedFile()
+    file: Express.Multer.File,
   ) {
     const idInteiro = Number(id);
-    return await this.instituicoesService.editarUmPorId(
+    const nomeImagem = file?.filename;
+
+    const { nome } = instituicoes;
+    const instituicaoComImage = {
+      nome,
+      image: nomeImagem,
+    };
+
+    return await this.instituicoesService.editarInstituicaoELogoPorId(
       idInteiro,
-      instituicoes,
+      instituicaoComImage,
     );
   }
 

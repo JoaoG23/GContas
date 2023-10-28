@@ -15,11 +15,6 @@ export class InstituicoesRepositories
 {
   constructor(private readonly prismaService: PrismaService) {}
 
-  async pesquisarPorCriterios(
-    criteriosDeBusca: CriterioDePesquisaInstituicaoDto,
-  ) {
-    throw new Error('Method not implemented.');
-  }
   async contarTodosPorCriterio(
     criteriosDeBusca: CriterioDePesquisaInstituicaoDto,
   ) {

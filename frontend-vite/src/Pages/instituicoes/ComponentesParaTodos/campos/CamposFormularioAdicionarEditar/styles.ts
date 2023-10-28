@@ -5,9 +5,9 @@ export const Campos = styled.section`
 `;
 
 export const UmaColuna = styled.section`
-  padding: 1em;
   display: grid;
-  grid-template-columns: 1fr 3fr;
+  grid-template-columns: auto;
+  gap: 1em;
 
   @media screen and (max-width: 600px) {
     grid-template-columns: auto;

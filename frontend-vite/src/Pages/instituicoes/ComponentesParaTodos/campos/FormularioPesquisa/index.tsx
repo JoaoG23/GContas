@@ -31,20 +31,7 @@ export const FormularioPesquisa: React.FC<Props> = ({
           name="instituacao"
           label="Instituição"
         />
-        <InputDefault
-          requirido={false}
-          register={register}
-          placeholder="Digite a Login"
-          name="login"
-          label="Login"
-        />
-        <InputDefault
-          requirido={false}
-          register={register}
-          placeholder="Digite a Título"
-          name="titulo"
-          label="Titulo"
-        />
+
         <SecondaryButton>
           <p>Pesquisar</p>
           <ImSearch color="#fff" size={20} />

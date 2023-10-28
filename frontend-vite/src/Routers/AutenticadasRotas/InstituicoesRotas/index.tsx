@@ -4,6 +4,9 @@ import React from "react";
 import PrivateRoute from "../../Auth/PrivateRouter";
 
 import { TodasInstituicoes } from "../../../Pages/instituicoes/TodasInstituicoes";
+import { AdicionarInstituicao } from "../../../Pages/instituicoes/AdicionarInstituicao";
+import { EditarInstituicao } from "../../../Pages/instituicoes/EditarInstituicao";
+import { DeletarInstituicao } from "../../../Pages/instituicoes/DeletarInstituicoes";
 // import { AdicionarConta } from "../../../Pages/instituicoes/AdicionarConta";
 // import { EditarConta } from "../../../Pages/instituicoes/EditarConta";
 // import { Todosinstituicoes } from "../../../Pages/instituicoes/Todasinstituicoes";
@@ -20,11 +23,11 @@ export const InstituicoesRotas: React.FC = () => {
           </PrivateRoute>
         }
       />
-      {/* <Route
+      <Route
         path="instituicoes/adicionar"
         element={
           <PrivateRoute redirectTo={"/"}>
-            <AdicionarConta />
+            <AdicionarInstituicao />
           </PrivateRoute>
         }
       />
@@ -32,7 +35,7 @@ export const InstituicoesRotas: React.FC = () => {
         path="instituicoes/editar/:id"
         element={
           <PrivateRoute redirectTo={"/"}>
-            <EditarConta />
+            <EditarInstituicao />
           </PrivateRoute>
         }
       />
@@ -40,10 +43,10 @@ export const InstituicoesRotas: React.FC = () => {
         path="instituicoes/deletar/:id"
         element={
           <PrivateRoute redirectTo={"/"}>
-            <DeletarConta />
+            <DeletarInstituicao />
           </PrivateRoute>
         }
-      /> */}
+      />
     </Routes>
   );
 };

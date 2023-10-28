@@ -2,10 +2,10 @@ import React from "react";
 import { Formulario } from "./components/Formulario";
 
 
-export const AdicionarConta: React.FC = () => {
+export const AdicionarInstituicao: React.FC = () => {
   return (
     <main>
-        <h2>Nova Conta</h2>
+        <h2>Nova Instituição</h2>
         <Formulario />
     </main>
   );

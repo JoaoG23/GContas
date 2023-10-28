@@ -6,7 +6,7 @@ import { calcularQuantidadePaginas } from 'src/utils/paginacao/calcularQuantidad
 import { CriarContaBodyDto } from '../contas.dto/CriarContaBodyDto';
 import { CriteriosDePesquisaContaDto } from '../contas.dto/CriteriosDePesquisaContaDto';
 
-import { ContasRepositoriesInterface } from '../interfaces/ContasRepositoriesInterface';
+import { ContasRepositoriesInterface } from './ContasRepositoriesInterface';
 
 @Injectable()
 export class ContasRepositories implements ContasRepositoriesInterface {
@@ -74,6 +74,7 @@ export class ContasRepositories implements ContasRepositoriesInterface {
         senha: true,
         email: true,
         observacoes: true,
+        instituicoes: true,
       },
     });
   }
@@ -115,6 +116,9 @@ export class ContasRepositories implements ContasRepositoriesInterface {
             },
           },
         ],
+      },
+      include: {
+        instituicoes: true,
       },
       skip: pularPagina,
       take: itemsPorPagina,
