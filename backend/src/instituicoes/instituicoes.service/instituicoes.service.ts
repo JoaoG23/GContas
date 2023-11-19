@@ -37,6 +37,9 @@ export class InstituicoesService {
   async buscarUmPorId(id: number) {
     return await this.instituicoesRepositories.buscarUmPorId(id);
   }
+  async buscarTodos() {
+    return await this.instituicoesRepositories.buscarTodos();
+  }
 
   async buscarTodosPorPagina(
     numeroPagina: number,

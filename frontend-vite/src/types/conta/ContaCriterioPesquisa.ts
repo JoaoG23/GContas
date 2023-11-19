@@ -1,5 +1,5 @@
 export type ContaCriterioPesquisa = {
   titulo?: string;
-  instituacao?: string;
+  instituicoes?: string;
   login?: string;
 };

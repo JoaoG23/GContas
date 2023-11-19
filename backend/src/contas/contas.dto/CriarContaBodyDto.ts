@@ -1,4 +1,4 @@
-import { IsNotEmpty } from 'class-validator';
+import { IsNotEmpty, IsNumber } from 'class-validator';
 
 export class CriarContaBodyDto {
   @IsNotEmpty({
@@ -6,10 +6,7 @@ export class CriarContaBodyDto {
   })
   titulo: string;
 
-  @IsNotEmpty({
-    message: 'O Campo instituacao não existe',
-  })
-  instituacao: string;
+  instituacao?: string;
 
   @IsNotEmpty({
     message: 'O Campo login não existe',
@@ -23,5 +20,7 @@ export class CriarContaBodyDto {
 
   email?: string;
   observacoes?: string;
+
+  @IsNumber({})
   instituicoesId?: number;
 }

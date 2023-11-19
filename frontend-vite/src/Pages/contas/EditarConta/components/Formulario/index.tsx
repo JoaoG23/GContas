@@ -57,7 +57,7 @@ export const Formulario: React.FC = () => {
     control,
     reset,
     formState: { errors },
-  } = useForm();
+  } = useForm<ContaCriada>();
 
   useEffect(() => {
     reset(contaAnterior);
@@ -67,7 +67,12 @@ export const Formulario: React.FC = () => {
     <>
       <CamposFormulario
         onSubmit={handleSubmit((conta) => {
-          mutate(conta as ContaCriada);
+          const { instituicoesId }: ContaCriada = conta;
+          const contaComInstituicoesIdInteiro = {
+            ...conta,
+            instituicoesId: Number(instituicoesId),
+          };
+          mutate(contaComInstituicoesIdInteiro);
         })}
         register={register}
         control={control}

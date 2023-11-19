@@ -17,13 +17,15 @@ export class ContasRepositories implements ContasRepositoriesInterface {
   }
 
   async contarTodosPorCriterio(criteriosDeBusca: CriteriosDePesquisaContaDto) {
-    const { login, instituacao, titulo } = criteriosDeBusca;
+    const { login, instituicoes, titulo } = criteriosDeBusca;
     const contagem: number = await this.prismaService.contas.count({
       where: {
         AND: [
           {
-            instituacao: {
-              contains: instituacao,
+            instituicoes: {
+              nome: {
+                contains: instituicoes,
+              },
             },
           },
           {
@@ -44,14 +46,16 @@ export class ContasRepositories implements ContasRepositoriesInterface {
   }
 
   async pesquisarPorCriterios(criteriosDeBusca: CriteriosDePesquisaContaDto) {
-    const { instituacao, login, titulo } = criteriosDeBusca;
+    const { instituicoes, login, titulo } = criteriosDeBusca;
 
     return await this.prismaService.contas.findMany({
       where: {
         AND: [
           {
-            instituacao: {
-              contains: instituacao,
+            instituicoes: {
+              nome: {
+                contains: instituicoes,
+              },
             },
           },
           {
@@ -82,7 +86,7 @@ export class ContasRepositories implements ContasRepositoriesInterface {
   async pesquisarCriteriosPorPagina(
     criteriosDeBusca: CriteriosDePesquisaContaDto,
   ) {
-    const { numeroPagina, quantidadeItemsPagina, instituacao, login, titulo } =
+    const { numeroPagina, quantidadeItemsPagina, instituicoes, login, titulo } =
       criteriosDeBusca;
 
     const quantidadeTotalRegistros = await this.contarTodosPorCriterio(
@@ -101,8 +105,10 @@ export class ContasRepositories implements ContasRepositoriesInterface {
       where: {
         AND: [
           {
-            instituacao: {
-              contains: instituacao,
+            instituicoes: {
+              nome: {
+                contains: instituicoes,
+              },
             },
           },
           {

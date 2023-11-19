@@ -15,7 +15,7 @@ import { GreenFont } from "../../../../../Components/FontColor/GreenFont";
 import { RedFont } from "../../../../../Components/FontColor/RedFont";
 import ButtonDefault from "../../../../../Components/Buttons/ButtonDefault/ButtonDark";
 import { SecondaryButton } from "../../../../../Components/Buttons/SecondaryButton/ButtonDark";
-import { LightButton } from "../../../../../Components/Buttons/LightButton";
+import { Logomarca } from "../../../../instituicoes/ComponentesParaTodos/images/Logomarca";
 
 import { useMascaraTexto } from "../../hooks/useMascaraTexto/useMascaraTexto";
 
@@ -34,37 +34,46 @@ export const ListaContas: React.FC<Props> = ({ conta }) => {
   return (
     <Card>
       <Contas.Container>
-        <Contas.ListaItems>
-          <li>
-            <strong>Titulo: </strong> {conta.titulo!}
-          </li>
-          <li>
-            <strong>Instituição: </strong> {conta.instituacao!}
-          </li>
-          <li>
-            <strong>Login: </strong>
-            <GreenFont>{conta.login!}</GreenFont>
-          </li>
-          <li>
-            <Contas.SenhaContainer>
-              <strong>Senha: </strong>
-              <RedFont>{senhaMascarada}</RedFont>
-              <div role="button" onClick={() => setMostrarSenha(!mostrarSenha)}>
-                {mostrarSenha ? (
-                  <BsFillEyeFill size={14} />
-                ) : (
-                  <BsFillEyeSlashFill size={14} />
-                )}
-              </div>
-            </Contas.SenhaContainer>
-          </li>
-          <li>
-            <strong>E-mail: </strong> {conta.email!}
-          </li>
-          <li>
-            <strong>Obs: </strong> {conta.observacoes!}
-          </li>
-        </Contas.ListaItems>
+        <Contas.ContainerRight>
+          <Logomarca imageLogomarca={conta?.instituicoes?.image!} />
+
+          <Contas.ListaItems>
+            <li>
+              <h2>
+                <strong>Titulo: </strong> {conta.titulo!}
+              </h2>
+            </li>
+            <li>
+              <strong>Instituição: </strong> {conta?.instituicoes?.nome!}
+            </li>
+            <li>
+              <strong>Login: </strong>
+              <GreenFont>{conta.login!}</GreenFont>
+            </li>
+            <li>
+              <Contas.SenhaContainer>
+                <strong>Senha: </strong>
+                <RedFont>{senhaMascarada}</RedFont>
+                <div
+                  role="button"
+                  onClick={() => setMostrarSenha(!mostrarSenha)}
+                >
+                  {mostrarSenha ? (
+                    <BsFillEyeFill size={14} />
+                  ) : (
+                    <BsFillEyeSlashFill size={14} />
+                  )}
+                </div>
+              </Contas.SenhaContainer>
+            </li>
+            <li>
+              <strong>E-mail: </strong> {conta.email!}
+            </li>
+            <li>
+              <strong>Obs: </strong> {conta.observacoes!}
+            </li>
+          </Contas.ListaItems>
+        </Contas.ContainerRight>
         <Contas.ContainerButton>
           <ButtonDefault onClick={() => navigate(`editar/${conta.id!}`)}>
             <BsFillPencilFill size={21} />

@@ -25,6 +25,10 @@ import { multerConfigUploadLogo } from '../instituicoes.utils/multer/multerConfi
 export class InstituicoesController {
   constructor(private readonly instituicoesService: InstituicoesService) {}
 
+  @Get()
+  async buscarTodos() {
+    return await this.instituicoesService.buscarTodos();
+  }
   @Get('paginas')
   async buscarTodosPorPagina(
     @Query('numero_pagina') numero_pagina,
@@ -47,7 +51,6 @@ export class InstituicoesController {
       criteriosBuscarService,
     );
   }
-
   @Get(':id')
   async buscarUmPorId(@Param('id') id: string) {
     const idInteiro = Number(id);

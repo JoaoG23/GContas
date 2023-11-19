@@ -24,7 +24,6 @@ export class BackupService {
       const data = await this.pg.any('SELECT * FROM usuarios');
       this.logger.log(data);
     } catch (e) {
-      // error;
       this.logger.log(e);
     }
   }

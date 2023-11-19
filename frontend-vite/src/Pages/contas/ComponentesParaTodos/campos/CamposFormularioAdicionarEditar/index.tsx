@@ -8,6 +8,7 @@ import { InputDefault } from "../../../../../Components/Inputs/InputDefault";
 import { SecondaryButton } from "../../../../../Components/Buttons/SecondaryButton/ButtonDark";
 
 import { AlertCampoVazio } from "../../../../../Components/alerts/AlertCampoVazio";
+import { SelectInstituicoes } from "../../../../../Components/selects/SelectInstituicao";
 
 type Props = {
   onSubmit?: React.FormEventHandler | any;
@@ -39,13 +40,12 @@ export const CamposFormulario: React.FC<Props> = ({
               )}
             </div>
             <div>
-              <InputDefault
+              <SelectInstituicoes
                 register={register}
-                name="instituacao"
+                name="instituicoesId"
                 label="Instituação"
-                placeholder="Digite a instituição"
               />
-              {errors?.instituacao?.type === "required" && (
+              {errors?.instituicoesId?.type === "required" && (
                 <AlertCampoVazio mensagem="Instituação vazio! Por gentileza preencher-o!" />
               )}
             </div>
@@ -88,7 +88,6 @@ export const CamposFormulario: React.FC<Props> = ({
                 register={register}
                 label="Observacões"
                 placeholder="Opcional! Notas ..."
-
               />
             </div>
           </main>

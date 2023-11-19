@@ -64,6 +64,16 @@ export class InstituicoesRepositories
     return [{ totalQuantidadePaginas, quantidadeTotalRegistros }, itemsPagina];
   }
 
+  async buscarTodos() {
+    return await this.prismaService.instituicoes.findMany({
+      select: {
+        id: true,
+        nome: true,
+        image: true,
+      },
+    });
+  }
+
   async buscarTodosPorPagina(
     numeroPagina: number,
     quantidadeItemsPagina: number,

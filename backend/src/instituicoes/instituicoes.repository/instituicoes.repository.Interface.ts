@@ -15,6 +15,7 @@ export abstract class InstituicoesRepositoriesInterface {
     criteriosDeBusca: CriterioDePesquisaInstituicaoDto,
   );
   abstract buscarUmPorId(id: number);
+  abstract buscarTodos();
   abstract contarTodos();
   abstract contarTodosPorCriterio(
     criteriosDeBusca: CriterioDePesquisaInstituicaoDto,

@@ -3,9 +3,9 @@ import styled from "styled-components";
 export const CardContainer = styled.div`
   border-radius: 1.5em;
   font-size: small;
-  padding: 20px;
+  padding: 15px;
 
-  gap: 0.2em;
+  gap: 0.1em;
 
   box-shadow: 1px 1px 5px #717f953a;
 

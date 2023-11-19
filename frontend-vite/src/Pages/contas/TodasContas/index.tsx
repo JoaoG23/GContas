@@ -1,10 +1,10 @@
 import { useForm } from "react-hook-form";
 import * as Fluxo from "./styles";
-import { useMutation } from "react-query";
+import { useQuery } from "react-query";
 import { useNavigate } from "react-router-dom";
 import { IoMdAddCircle } from "react-icons/io";
 import { toast } from "react-toastify";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 import { pesquisarContasPaginaPorCriterio } from "./api";
 
@@ -28,11 +28,8 @@ export const TodosContas: React.FC = () => {
   const [pagina, setPagina] = useState<number>(1);
   const comecarPelaPrimeiraPagina = () => setPagina(1);
 
-  const {
-    data,
-    mutate: mutatePesquisar,
-    isLoading,
-  } = useMutation(
+  const { data, isLoading } = useQuery(
+    ["pesquisar-contas", { pagina, criteriosBusca }],
     async () => await pesquisarContasPaginaPorCriterio(pagina, criteriosBusca),
     {
       onError: (error: ErrorResposta) => {
@@ -41,16 +38,7 @@ export const TodosContas: React.FC = () => {
     }
   );
 
-  useEffect(() => {
-    mutatePesquisar();
-  }, [pagina, criteriosBusca]);
-
-  const {
-    register,
-    handleSubmit,
-    control,
-    formState: { errors },
-  } = useForm();
+  const { register, handleSubmit } = useForm<ContaCriterioPesquisa>({});
 
   const contas = data?.data[1];
   const totalQuantidadePaginas = data?.data[0].totalQuantidadePaginas;
@@ -63,12 +51,9 @@ export const TodosContas: React.FC = () => {
         <FormularioPesquisa
           onSubmit={handleSubmit((criterios: ContaCriterioPesquisa) => {
             setCriteriosBusca(criterios);
-            mutatePesquisar();
             comecarPelaPrimeiraPagina();
           })}
           register={register}
-          control={control}
-          errors={errors}
         />
       </Fluxo.Formulario>
       <Fluxo.Header>

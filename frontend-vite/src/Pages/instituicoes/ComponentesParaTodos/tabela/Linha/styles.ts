@@ -30,7 +30,6 @@ export const ListaItems = styled.ul`
 export const ContainerButton = styled.div`
   display: flex;
   
-  /* justify-content: center; */
   align-content: center;
   gap: 5px;
 `;

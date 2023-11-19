@@ -1,14 +1,11 @@
 import { useQuery } from "react-query";
 import React from "react";
-import { BsFillBuildingsFill } from "react-icons/bs";
 
 import * as Instituicao from "./styles";
 
 import { buscarLogomarcaInstituicaoPorCaminho } from "./api";
 
-import { ErrorResposta } from "../../../../../types/Respostas/ErrorResposta/ErroResposta";
-
-import { SpinnerCarregamento } from "../../../../../Components/spinners/SpinnerCarregamento";
+import semImage from "./icon_sem_image.svg";
 
 type Props = {
   imageLogomarca: string;
@@ -16,17 +13,13 @@ type Props = {
 export const Logomarca: React.FC<Props> = ({ imageLogomarca }) => {
   const { data: caminhoLogomarca, isLoading } = useQuery(
     ["logomarca-instituicao", imageLogomarca],
-    () => buscarLogomarcaInstituicaoPorCaminho(imageLogomarca || ""),
-    {
-      onError: (error: ErrorResposta) => {
-        console.log("🚀 ~ file: index.tsx:22 ~ error:", error);
-      },
-    }
+    () => buscarLogomarcaInstituicaoPorCaminho(imageLogomarca || "")
   );
+
   return (
     <div>
-      <Instituicao.Logomarca alt="logo" src={caminhoLogomarca} />
-      {isLoading && <SpinnerCarregamento />}
+      <Instituicao.Logomarca alt="logo" src={caminhoLogomarca || semImage} />
+      {/* {isLoading && <SpinnerCarregamento />} */}
     </div>
   );
 };
