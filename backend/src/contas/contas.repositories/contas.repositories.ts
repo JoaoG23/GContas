@@ -17,7 +17,7 @@ export class ContasRepositories implements ContasRepositoriesInterface {
   }
 
   async contarTodosPorCriterio(criteriosDeBusca: CriteriosDePesquisaContaDto) {
-    const { login, instituicoes, titulo } = criteriosDeBusca;
+    const { instituicoes, titulo } = criteriosDeBusca;
     const contagem: number = await this.prismaService.contas.count({
       where: {
         AND: [
@@ -25,17 +25,15 @@ export class ContasRepositories implements ContasRepositoriesInterface {
             instituicoes: {
               nome: {
                 contains: instituicoes,
+                mode: 'insensitive',
               },
             },
           },
-          {
-            login: {
-              contains: login,
-            },
-          },
+
           {
             titulo: {
               contains: titulo,
+              mode: 'insensitive',
             },
           },
         ],
@@ -46,7 +44,7 @@ export class ContasRepositories implements ContasRepositoriesInterface {
   }
 
   async pesquisarPorCriterios(criteriosDeBusca: CriteriosDePesquisaContaDto) {
-    const { instituicoes, login, titulo } = criteriosDeBusca;
+    const { instituicoes, titulo } = criteriosDeBusca;
 
     return await this.prismaService.contas.findMany({
       where: {
@@ -55,17 +53,14 @@ export class ContasRepositories implements ContasRepositoriesInterface {
             instituicoes: {
               nome: {
                 contains: instituicoes,
+                mode: 'insensitive',
               },
-            },
-          },
-          {
-            login: {
-              contains: login,
             },
           },
           {
             titulo: {
               contains: titulo,
+              mode: 'insensitive',
             },
           },
         ],
@@ -73,7 +68,6 @@ export class ContasRepositories implements ContasRepositoriesInterface {
       select: {
         id: true,
         titulo: true,
-        instituacao: true,
         login: true,
         senha: true,
         email: true,
@@ -86,7 +80,7 @@ export class ContasRepositories implements ContasRepositoriesInterface {
   async pesquisarCriteriosPorPagina(
     criteriosDeBusca: CriteriosDePesquisaContaDto,
   ) {
-    const { numeroPagina, quantidadeItemsPagina, instituicoes, login, titulo } =
+    const { numeroPagina, quantidadeItemsPagina, instituicoes, titulo } =
       criteriosDeBusca;
 
     const quantidadeTotalRegistros = await this.contarTodosPorCriterio(
@@ -108,17 +102,14 @@ export class ContasRepositories implements ContasRepositoriesInterface {
             instituicoes: {
               nome: {
                 contains: instituicoes,
+                mode: 'insensitive',
               },
-            },
-          },
-          {
-            login: {
-              contains: login,
             },
           },
           {
             titulo: {
               contains: titulo,
+              mode: 'insensitive',
             },
           },
         ],

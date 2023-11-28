@@ -4,7 +4,7 @@ import { useQuery } from "react-query";
 import { useNavigate } from "react-router-dom";
 import { IoMdAddCircle } from "react-icons/io";
 import { toast } from "react-toastify";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import { pesquisarContasPaginaPorCriterio } from "./api";
 
@@ -18,15 +18,26 @@ import { CardList } from "../../../Components/cards/CardList";
 import { ContaCriterioPesquisa } from "../../../types/conta/ContaCriterioPesquisa";
 import { ContaVisualizada } from "../../../types/conta/ContaVisualizada";
 import { ErrorResposta } from "../../../types/Respostas/ErrorResposta/ErroResposta";
+import { PaginacaoContaCache } from "../../../types/conta/PaginacaoContaCache";
+
+import { buscarConfiguracoesPaginaPorChave } from "../../../utils/paginacao/buscarConfiguracoesPaginaPorChave/buscarConfiguracoesPaginaPorChave";
+import { guardarConfiguracoesPaginaPorChave } from "../../../utils/paginacao/guardarConfiguracoesPaginaPorChave/guardarConfiguracoesPaginaPorChave";
 
 export const TodosContas: React.FC = () => {
   const navigate = useNavigate();
 
-  const [criteriosBusca, setCriteriosBusca] = useState<ContaCriterioPesquisa>(
-    {}
-  );
-  const [pagina, setPagina] = useState<number>(1);
+  const chave = "contas";
+  const configuracaoPagina: PaginacaoContaCache =
+    buscarConfiguracoesPaginaPorChave(chave) || {};
+
+  const paginaAtual: number = Number(configuracaoPagina?.pagina!);
+  const [pagina, setPagina] = useState<number>(paginaAtual || 1);
+
   const comecarPelaPrimeiraPagina = () => setPagina(1);
+
+  const [criteriosBusca, setCriteriosBusca] = useState<ContaCriterioPesquisa>(
+    configuracaoPagina?.criteriosBusca || {}
+  );
 
   const { data, isLoading } = useQuery(
     ["pesquisar-contas", { pagina, criteriosBusca }],
@@ -38,9 +49,13 @@ export const TodosContas: React.FC = () => {
     }
   );
 
-  const { register, handleSubmit } = useForm<ContaCriterioPesquisa>({});
+  const { register, reset, handleSubmit } = useForm<ContaCriterioPesquisa>({});
+  useEffect(() => {
+    guardarConfiguracoesPaginaPorChave(chave, { criteriosBusca, pagina });
+    reset(criteriosBusca);
+  }, [pagina, criteriosBusca]);
 
-  const contas = data?.data[1];
+  const contas: ContaVisualizada[] = data?.data[1];
   const totalQuantidadePaginas = data?.data[0].totalQuantidadePaginas;
   const quantidadeTotalRegistros = data?.data[0].quantidadeTotalRegistros;
 

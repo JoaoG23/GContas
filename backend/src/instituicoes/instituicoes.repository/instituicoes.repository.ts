@@ -24,6 +24,7 @@ export class InstituicoesRepositories
       where: {
         nome: {
           contains: nome,
+          mode: 'insensitive',
         },
       },
     });
@@ -55,6 +56,7 @@ export class InstituicoesRepositories
       where: {
         nome: {
           contains: nome,
+          mode: 'insensitive',
         },
       },
       skip: pularPagina,

@@ -4,6 +4,11 @@ export const Container = styled.main`
   display: flex;
   justify-content: space-between;
 `;
+export const ContainerRight = styled.section`
+  display: flex;
+  align-items: center;
+  gap: 1em;
+`;
 export const SenhaContainer = styled.div`
   gap: 0.3em;
   display: flex;

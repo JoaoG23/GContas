@@ -1,4 +1,4 @@
-import { FieldValues, UseFormSetValue } from "react-hook-form";
+import { Control, FieldValues, UseFormSetValue } from "react-hook-form";
 import { BsCheckCircleFill } from "react-icons/bs";
 import React from "react";
 import "react-toastify/dist/ReactToastify.css";
@@ -12,7 +12,7 @@ import { FileInput } from "../../../../../Components/Inputs/FileInput";
 type Props = {
   onSubmit?: React.FormEventHandler | any;
   register: any;
-  control: any;
+  control: Control<FieldValues>;
   errors: any;
   setValue?: UseFormSetValue<FieldValues>;
 };
@@ -28,8 +28,8 @@ export const CamposFormularioLogomarca: React.FC<Props> = ({
     <Form.Container role="form" onSubmit={onSubmit}>
       <Form.Campos>
         <FileInput
+          register={register}
           requirido={false}
-          control={control}
           name="caminho_imagem"
           label="Upload Image"
           placeholder="Upload Image"

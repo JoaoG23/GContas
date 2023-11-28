@@ -1,4 +1,4 @@
-import { ContaVisualizada } from "../../../../../../types/conta/ContaVisualizada";
+// import { ContaVisualizada } from "../../../../../../types/conta/ContaVisualizada";
 
 export const configuracaoGeracaoExportacaoContasPDF = (
   dadosRelatorio: string[][],
@@ -6,7 +6,7 @@ export const configuracaoGeracaoExportacaoContasPDF = (
 ) => {
   const definicoesDocumento = {
     pageSize: "A4",
-	userPassword: 'jg12345',
+    // userPassword: nomeUsuario!,
     content: [
       {
         image: logomarcaBase64,

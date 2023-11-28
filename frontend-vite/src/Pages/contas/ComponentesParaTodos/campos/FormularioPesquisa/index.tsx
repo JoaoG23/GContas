@@ -28,13 +28,6 @@ export const FormularioPesquisa: React.FC<Props> = ({ onSubmit, register }) => {
         <InputDefault
           requirido={false}
           register={register}
-          placeholder="Digite a Login"
-          name="login"
-          label="Login"
-        />
-        <InputDefault
-          requirido={false}
-          register={register}
           placeholder="Digite a Título"
           name="titulo"
           label="Titulo"

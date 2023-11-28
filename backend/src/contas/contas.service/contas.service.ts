@@ -130,7 +130,12 @@ export class ContasService {
     return [configuracoesPagina, itemsPaginaDescriptografados];
   }
 
-  async pesquisarPorCriterios(criteriosDeBusca: CriteriosDePesquisaContaDto) {
+  async pesquisarPorCriterios(
+    criteriosDeBusca: Omit<
+      CriteriosDePesquisaContaDto,
+      'numeroPagina' | 'quantidadeItemsPagina'
+    >,
+  ) {
     const contas = await this.contasRepositories.pesquisarPorCriterios(
       criteriosDeBusca,
     );

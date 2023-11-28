@@ -1,21 +1,18 @@
 import { endpoint } from "../../../../services/endpoint";
-import { ContaCriterioPesquisa } from "../../../../types/conta/ContaCriterioPesquisa";
+
+import { InstituicaoPesquisada } from "../../../../types/instituicao/InstituicaoPesquisada";
 
 export async function pesquisarInstituicoesPaginaPorCriterio(
   numero_pagina: number,
-  criteriosBusca: ContaCriterioPesquisa
+  criteriosBusca: InstituicaoPesquisada
 ) {
-  const { instituacao, titulo, login } = criteriosBusca;
+  const { nome } = criteriosBusca;
   const resposta = await endpoint.get(`/instituicoes/pesquisar/paginas`, {
     params: {
       numero_pagina,
-      quantidade_items: 3,
-      instituacao,
-      titulo,
-      login,
+      quantidade_items: 5,
+      nome,
     },
   });
   return resposta;
 }
-
-

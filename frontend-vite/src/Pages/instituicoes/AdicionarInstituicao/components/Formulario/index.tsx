@@ -9,7 +9,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { navegarAtePaginaDepoisTempo } from "../../../../../utils/navegarAtePaginaDepoisTempo/navegarAtePaginaDepoisTempo";
 
 import { ErrorResposta } from "../../../../../types/Respostas/ErrorResposta/ErroResposta";
-import { InstuicaoCriada } from "../../../../../types/instituicao/InstituicaoCriada";
+// import { InstituicaoCriada } from "../../../../../types/instituicao/InstituicaoCriada";
 
 import { ModalSucesso } from "../../../../../Components/Modais/ModalSucesso";
 import { ModalCarregando } from "../../../../../Components/Modais/ModalCarregando";
@@ -17,10 +17,11 @@ import { ModalCarregando } from "../../../../../Components/Modais/ModalCarregand
 import { adicionarInstituicao } from "../../api";
 
 import { CamposFormulario } from "../../../ComponentesParaTodos/campos/CamposFormularioAdicionarEditar";
-import { CamposFormularioLogomarca } from "../../../ComponentesParaTodos/campos/CamposFormularioLogomarca";
+// import { CamposFormularioLogomarca } from "../../../ComponentesParaTodos/campos/CamposFormularioLogomarca";
 
 import { Container } from "./styles";
 import { SpinnerCarregamento } from "../../../../../Components/spinners/SpinnerCarregamento";
+import { InstituicaoCriada } from "../../../../../types/instituicao/InstituicaoCriada";
 
 export const Formulario: React.FC = () => {
   const queryClient = useQueryClient();
@@ -31,7 +32,7 @@ export const Formulario: React.FC = () => {
     isLoading: isLoadingAdicionar,
     isSuccess,
   } = useMutation(
-    async (instituicao: InstuicaoCriada) =>
+    async (instituicao: InstituicaoCriada) =>
       await adicionarInstituicao(instituicao),
     {
       onError: (error: ErrorResposta) => {
@@ -49,15 +50,14 @@ export const Formulario: React.FC = () => {
     register,
     handleSubmit,
     control,
-    setValue,
     formState: { errors },
-  } = useForm({});
+  } = useForm<InstituicaoCriada>({});
 
   return (
     <Container>
       <CamposFormulario
         onSubmit={handleSubmit((instituicao) => {
-          adicionarMutate(instituicao as InstuicaoCriada);
+          adicionarMutate(instituicao as InstituicaoCriada);
         })}
         register={register}
         control={control}

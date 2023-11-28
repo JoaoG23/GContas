@@ -61,7 +61,8 @@ export class InstituicoesController {
     @Res() res: Response,
     @Param('logoname') logoname: string,
   ) {
-    res.sendFile(logoname, { root: './uploads/logos' });
+    const arquivo = res.sendFile(logoname, { root: './uploads/logos' });
+    return arquivo;
   }
 
   @Post()

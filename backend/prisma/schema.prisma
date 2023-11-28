@@ -31,7 +31,6 @@ model instituicoes {
 model contas {
   id             Int           @id @default(autoincrement())
   titulo         String        @db.VarChar(100)
-  instituacao    String?       @db.VarChar(100)
   login          String        @db.VarChar(255)
   senha          String        @db.Text
   email          String?       @db.VarChar(255)
