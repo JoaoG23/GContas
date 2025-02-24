@@ -6,12 +6,13 @@ export const criarLinhasExportacaoContas = (contas: ContaVisualizada[]) => {
   ];
 
   if (contas) {
-    contas?.map((conta: any) => {
-      const { titulo, instituacao, login, senha, email, observacoes } = conta;
+    contas?.map((conta: ContaVisualizada) => {
+      const { titulo, instituicoes, login, senha, email, observacoes } = conta;
 
+      const nomeInstituicao = instituicoes?.nome;
       let linha: string[] = [
         titulo!,
-        instituacao!,
+        nomeInstituicao!,
         login!,
         senha!,
         email!,

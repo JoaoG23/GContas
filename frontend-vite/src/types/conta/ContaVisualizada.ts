@@ -6,4 +6,10 @@ export type ContaVisualizada = {
   senha: string;
   email?: string;
   observacoes?: string;
+  instituicoesId?: number;
+  instituicoes?: {
+    id: number;
+    nome: string;
+    image: string;
+  };
 };

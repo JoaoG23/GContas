@@ -1,6 +1,6 @@
-import { ExportacoesDadosContas } from "../../Pages/exportacoes/TodasExportacoes";
 import { ContasRotas } from "./ContasRotas";
 import { ExportacoesRotas } from "./ExportacoesRotas";
+import { InstituicoesRotas } from "./InstituicoesRotas";
 import { UsuariosRotas } from "./UsuariosRotas";
 
 const AutenticadasRotas = () => {
@@ -9,6 +9,7 @@ const AutenticadasRotas = () => {
       <ContasRotas />
       <UsuariosRotas />
       <ExportacoesRotas />
+      <InstituicoesRotas />
     </>
   );
 };

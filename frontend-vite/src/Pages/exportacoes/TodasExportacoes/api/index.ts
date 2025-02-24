@@ -4,10 +4,10 @@ import { ContaCriterioPesquisa } from "../../../../types/conta/ContaCriterioPesq
 export async function pesquisarContaPorCriterio(
   criteriosBusca: ContaCriterioPesquisa
 ) {
-  const { instituacao, titulo, login } = criteriosBusca;
+  const { instituicoes, titulo, login } = criteriosBusca;
   const resposta = await endpoint.get(`/contas/pesquisar`, {
     params: {
-      instituacao,
+      instituicoes,
       titulo,
       login,
     },

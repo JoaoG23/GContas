@@ -1,12 +1,13 @@
-import { ContaVisualizada } from "../../../../../../types/conta/ContaVisualizada";
+// import { ContaVisualizada } from "../../../../../../types/conta/ContaVisualizada";
 
 export const configuracaoGeracaoExportacaoContasPDF = (
   dadosRelatorio: string[][],
   logomarcaBase64: string
 ) => {
   const definicoesDocumento = {
-    pageSize: "A4",
-	userPassword: 'jg12345',
+    pageSize: 'A5',
+    pageOrientation: 'landscape',
+  
     content: [
       {
         image: logomarcaBase64,
@@ -24,8 +25,9 @@ export const configuracaoGeracaoExportacaoContasPDF = (
         style: "small",
         table: {
           headerRows: 1,
+          widths: ["10%", 35, 130, 100, 40, 100],
 
-          widths: ["auto", "auto", "auto", "auto", "auto", "auto"],
+          // widths: ["10%", "10%", "auto", "auto", 10, "10%"],
           body: dadosRelatorio,
         },
         // layout: {

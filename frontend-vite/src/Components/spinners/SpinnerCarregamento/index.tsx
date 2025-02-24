@@ -7,7 +7,6 @@ export const SpinnerCarregamento: React.FC = () => (
   <>
     <Container>
       <AnimationLoading src={image} alt="Carregando" />
-      <p>Carregando .. </p>
     </Container>
   </>
 );

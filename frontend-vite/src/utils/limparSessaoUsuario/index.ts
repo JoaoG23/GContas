@@ -1,3 +1,3 @@
 export function limparSessaoUsuario() {
-  window.localStorage.clear();
+  window.sessionStorage.clear();
 }

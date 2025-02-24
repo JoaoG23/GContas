@@ -1,7 +1,7 @@
 export class CriteriosDePesquisaContaDto {
   titulo?: string;
-  instituacao?: string;
-  login?: string;
+  instituicoes?: string;
+  instituicoesId?: number;
   numeroPagina?: number;
   quantidadeItemsPagina?: number;
 }

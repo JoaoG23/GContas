@@ -19,14 +19,24 @@ model usuarios {
   updatedAt DateTime? @updatedAt
 }
 
+model instituicoes {
+  id        Int       @id @default(autoincrement())
+  nome      String?   @db.VarChar(50)
+  image     String?   @db.VarChar(255)
+  createdAt DateTime? @default(now())
+  updatedAt DateTime? @updatedAt
+  contas    contas[]
+}
+
 model contas {
-  id          Int       @id @default(autoincrement())
-  titulo      String    @db.VarChar(100)
-  instituacao String    @db.VarChar(100)
-  login       String    @db.VarChar(255)
-  senha       String    @db.Text
-  email       String?   @db.VarChar(255)
-  observacoes String?   @db.VarChar(100)
-  createdAt   DateTime? @default(now())
-  updatedAt   DateTime? @updatedAt
+  id             Int           @id @default(autoincrement())
+  titulo         String        @db.VarChar(100)
+  login          String        @db.VarChar(255)
+  senha          String        @db.Text
+  email          String?       @db.VarChar(255)
+  observacoes    String?       @db.VarChar(100)
+  createdAt      DateTime?     @default(now())
+  updatedAt      DateTime?     @updatedAt
+  instituicoes   instituicoes? @relation(fields: [instituicoesId], references: [id])
+  instituicoesId Int?
 }

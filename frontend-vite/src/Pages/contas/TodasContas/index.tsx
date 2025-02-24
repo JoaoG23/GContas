@@ -1,6 +1,6 @@
 import { useForm } from "react-hook-form";
 import * as Fluxo from "./styles";
-import { useMutation } from "react-query";
+import { useQuery } from "react-query";
 import { useNavigate } from "react-router-dom";
 import { IoMdAddCircle } from "react-icons/io";
 import { toast } from "react-toastify";
@@ -18,21 +18,29 @@ import { CardList } from "../../../Components/cards/CardList";
 import { ContaCriterioPesquisa } from "../../../types/conta/ContaCriterioPesquisa";
 import { ContaVisualizada } from "../../../types/conta/ContaVisualizada";
 import { ErrorResposta } from "../../../types/Respostas/ErrorResposta/ErroResposta";
+import { PaginacaoContaCache } from "../../../types/conta/PaginacaoContaCache";
+
+import { buscarConfiguracoesPaginaPorChave } from "../../../utils/paginacao/buscarConfiguracoesPaginaPorChave/buscarConfiguracoesPaginaPorChave";
+import { guardarConfiguracoesPaginaPorChave } from "../../../utils/paginacao/guardarConfiguracoesPaginaPorChave/guardarConfiguracoesPaginaPorChave";
 
 export const TodosContas: React.FC = () => {
   const navigate = useNavigate();
 
-  const [criteriosBusca, setCriteriosBusca] = useState<ContaCriterioPesquisa>(
-    {}
-  );
-  const [pagina, setPagina] = useState<number>(1);
+  const chave = "contas";
+  const configuracaoPagina: PaginacaoContaCache =
+    buscarConfiguracoesPaginaPorChave(chave) || {};
+
+  const paginaAtual: number = Number(configuracaoPagina?.pagina!);
+  const [pagina, setPagina] = useState<number>(paginaAtual || 1);
+
   const comecarPelaPrimeiraPagina = () => setPagina(1);
 
-  const {
-    data,
-    mutate: mutatePesquisar,
-    isLoading,
-  } = useMutation(
+  const [criteriosBusca, setCriteriosBusca] = useState<ContaCriterioPesquisa>(
+    configuracaoPagina?.criteriosBusca || {}
+  );
+
+  const { data, isLoading } = useQuery(
+    ["pesquisar-contas", { pagina, criteriosBusca }],
     async () => await pesquisarContasPaginaPorCriterio(pagina, criteriosBusca),
     {
       onError: (error: ErrorResposta) => {
@@ -41,18 +49,13 @@ export const TodosContas: React.FC = () => {
     }
   );
 
+  const { register, reset, handleSubmit } = useForm<ContaCriterioPesquisa>({});
   useEffect(() => {
-    mutatePesquisar();
+    guardarConfiguracoesPaginaPorChave(chave, { criteriosBusca, pagina });
+    reset(criteriosBusca);
   }, [pagina, criteriosBusca]);
 
-  const {
-    register,
-    handleSubmit,
-    control,
-    formState: { errors },
-  } = useForm();
-
-  const contas = data?.data[1];
+  const contas: ContaVisualizada[] = data?.data[1];
   const totalQuantidadePaginas = data?.data[0].totalQuantidadePaginas;
   const quantidadeTotalRegistros = data?.data[0].quantidadeTotalRegistros;
 
@@ -63,12 +66,9 @@ export const TodosContas: React.FC = () => {
         <FormularioPesquisa
           onSubmit={handleSubmit((criterios: ContaCriterioPesquisa) => {
             setCriteriosBusca(criterios);
-            mutatePesquisar();
             comecarPelaPrimeiraPagina();
           })}
           register={register}
-          control={control}
-          errors={errors}
         />
       </Fluxo.Formulario>
       <Fluxo.Header>

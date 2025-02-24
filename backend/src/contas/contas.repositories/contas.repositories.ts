@@ -6,7 +6,7 @@ import { calcularQuantidadePaginas } from 'src/utils/paginacao/calcularQuantidad
 import { CriarContaBodyDto } from '../contas.dto/CriarContaBodyDto';
 import { CriteriosDePesquisaContaDto } from '../contas.dto/CriteriosDePesquisaContaDto';
 
-import { ContasRepositoriesInterface } from '../interfaces/ContasRepositoriesInterface';
+import { ContasRepositoriesInterface } from './ContasRepositoriesInterface';
 
 @Injectable()
 export class ContasRepositories implements ContasRepositoriesInterface {
@@ -17,23 +17,23 @@ export class ContasRepositories implements ContasRepositoriesInterface {
   }
 
   async contarTodosPorCriterio(criteriosDeBusca: CriteriosDePesquisaContaDto) {
-    const { login, instituacao, titulo } = criteriosDeBusca;
+    const { instituicoes, titulo } = criteriosDeBusca;
     const contagem: number = await this.prismaService.contas.count({
       where: {
         AND: [
           {
-            instituacao: {
-              contains: instituacao,
+            instituicoes: {
+              nome: {
+                contains: instituicoes,
+                mode: 'insensitive',
+              },
             },
           },
-          {
-            login: {
-              contains: login,
-            },
-          },
+
           {
             titulo: {
               contains: titulo,
+              mode: 'insensitive',
             },
           },
         ],
@@ -44,24 +44,23 @@ export class ContasRepositories implements ContasRepositoriesInterface {
   }
 
   async pesquisarPorCriterios(criteriosDeBusca: CriteriosDePesquisaContaDto) {
-    const { instituacao, login, titulo } = criteriosDeBusca;
+    const { instituicoes, titulo } = criteriosDeBusca;
 
     return await this.prismaService.contas.findMany({
       where: {
         AND: [
           {
-            instituacao: {
-              contains: instituacao,
-            },
-          },
-          {
-            login: {
-              contains: login,
+            instituicoes: {
+              nome: {
+                contains: instituicoes,
+                mode: 'insensitive',
+              },
             },
           },
           {
             titulo: {
               contains: titulo,
+              mode: 'insensitive',
             },
           },
         ],
@@ -69,11 +68,11 @@ export class ContasRepositories implements ContasRepositoriesInterface {
       select: {
         id: true,
         titulo: true,
-        instituacao: true,
         login: true,
         senha: true,
         email: true,
         observacoes: true,
+        instituicoes: true,
       },
     });
   }
@@ -81,7 +80,7 @@ export class ContasRepositories implements ContasRepositoriesInterface {
   async pesquisarCriteriosPorPagina(
     criteriosDeBusca: CriteriosDePesquisaContaDto,
   ) {
-    const { numeroPagina, quantidadeItemsPagina, instituacao, login, titulo } =
+    const { numeroPagina, quantidadeItemsPagina, instituicoes, titulo } =
       criteriosDeBusca;
 
     const quantidadeTotalRegistros = await this.contarTodosPorCriterio(
@@ -100,21 +99,23 @@ export class ContasRepositories implements ContasRepositoriesInterface {
       where: {
         AND: [
           {
-            instituacao: {
-              contains: instituacao,
-            },
-          },
-          {
-            login: {
-              contains: login,
+            instituicoes: {
+              nome: {
+                contains: instituicoes,
+                mode: 'insensitive',
+              },
             },
           },
           {
             titulo: {
               contains: titulo,
+              mode: 'insensitive',
             },
           },
         ],
+      },
+      include: {
+        instituicoes: true,
       },
       skip: pularPagina,
       take: itemsPorPagina,
