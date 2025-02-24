@@ -26,56 +26,114 @@ O Gconta é um projeto desenvolvido para armazenar dados de login de usuários e
 - Vite
 
 ## Como instalar
+**Pré-requisitos**
 
-Claro, aqui está a lista de tarefas para o seu projeto usando o NestJS (Node.js) no backend e o frontend em uma pasta separada:
+- Node.js instalado
+- Docker instalado (caso opte por usar Docker)
 
-**Backend:**
+## Instalação e Configuração sem Docker
 
-1. Entrar na pasta do backend:
-   ```
-   cd backend
-   ```
-
-2. Instalar as dependências do Node.js:
-   ```
+1. **Instale as dependências do projeto:**
+   ```sh
    npm install
    ```
 
-3. Instalar o Prisma (caso ainda não esteja instalado):
-   ```
-   npm install prisma --save-dev
-   ```
+2. **Configure o banco de dados:**
+   - Crie um arquivo `.env` na raiz do projeto backend com o seguinte conteúdo:
+     ```env
+     DATABASE_URL="postgresql://admin:admin@localhost:5432/gcontas?schema=public"
+     PORTA_SERVIDOR=3000
+     SEGREDO='dsadsadsa'
+     ```
 
-4. Configurar o arquivo `.env` para as configurações do banco de dados (se necessário).
-
-5. Criar e aplicar as migrações do banco de dados usando o Prisma:
-   ```
+3. **Execute as migrações do banco de dados:**
+   ```sh
    npx prisma migrate dev
    ```
 
-6. Iniciar o servidor em modo de desenvolvimento:
+4. **Gere os clientes do Prisma:**
+   ```sh
+   npx prisma generate
    ```
+
+5. **Inicie o servidor backend:**
+   ```sh
    npm run start:dev
    ```
 
-**Frontend:**
+6. **Configuração do frontend:**
+   - Abra um novo terminal e navegue até a pasta do frontend:
+     ```sh
+     cd frontend-vite
+     ```
+   - Instale as dependências:
+     ```sh
+     npm install
+     ```
+   - Inicie o servidor de desenvolvimento:
+     ```sh
+     npm run dev
+     ```
 
-1. Entrar na pasta do frontend:
-   ```
-   cd frontend
+---
+
+## Instalação e Configuração com Docker
+
+1. **Criação da estrutura do banco de dados:**
+   - Crie uma pasta `db` no caminho `/backend/db`.
+   - Dentro dessa pasta, crie um arquivo `db.env` com o seguinte conteúdo:
+     ```env
+     POSTGRES_USER=admin
+     POSTGRES_PASSWORD=admin
+     ```
+
+2. **Configuração dos arquivos de ambiente:**
+   - Dentro da pasta `backend`, crie dois arquivos `.env`:
+     - **.env (desenvolvimento):**
+       ```env
+       DATABASE_URL="postgresql://admin:admin@localhost:5432/gcontas?schema=public"
+       PORTA_SERVIDOR=3000
+       SEGREDO='segredo'
+       ```
+     - **env.prod (produção):**
+       ```env
+       # Produção
+       DATABASE_URL="postgresql://admin:admin@db-container:5432/gcontas?schema=public"
+       PORTA_SERVIDOR=3000
+       SEGREDO='tstea'
+       ```
+
+3. **Configuração do Nginx para o frontend:**
+   - Dentro da pasta `frontend-vite`, crie uma pasta chamada `nginx`.
+   - Dentro dessa pasta, crie um arquivo `nginx.config` com o seguinte conteúdo:
+     ```nginx
+     server {
+         listen   80;
+         listen   [::]:80 default ipv6only=on;
+
+         root /usr/share/nginx/html;
+         index index.html;
+
+         server_name _; # all hostnames
+
+         location / {
+             try_files $uri /index.html;
+         }
+     }
+     ```
+
+4. **Subindo os containers com Docker:**
+   ```sh
+   docker-compose up
    ```
 
-2. Instalar as dependências do Node.js:
-   ```
-   npm install
-   ```
-
-3. Iniciar o servidor de desenvolvimento do frontend:
-   ```
-   npm run dev
+5. **Executar em background:**
+   ```sh
+   docker-compose up -d
    ```
 
-Lembre-se de configurar adequadamente as variáveis de ambiente e os arquivos de configuração necessários para o NestJS e o Prisma, de acordo com as necessidades do seu projeto. Certifique-se também de que as portas utilizadas pelo backend e pelo frontend não entrem em conflito.
+Após seguir esses passos, seu sistema estará configurado e pronto para uso!
+
 
 ## Como usar
 
