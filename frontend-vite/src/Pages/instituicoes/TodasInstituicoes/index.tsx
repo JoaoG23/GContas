@@ -3,7 +3,7 @@ import { useQuery } from "react-query";
 import { useNavigate } from "react-router-dom";
 import { IoMdAddCircle } from "react-icons/io";
 import { toast } from "react-toastify";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 
 import { pesquisarInstituicoesPaginaPorCriterio } from "./api";
 
